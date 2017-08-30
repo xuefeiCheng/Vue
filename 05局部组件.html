@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>局部组件</title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			div.boc{
+				width: 70%;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="boc">
+			<h2>局部组件，就是在当前作用域下定义组件，而不是在全局作用域下实例化一个vue组件</h2>
+			<div id="app1">
+				<p>app1中使用自定义 组件 todo-item，效果如下：</p>
+				<todo-item></todo-item>
+			</div>
+			<div id="app2">
+				<p>app2中使用自定义 组件 todo-item，无效；原因是，该自定义指令是局部组件，只在app1中有效</p>
+				<!--在 app2中使用自定义组件，无效-->
+				<todo-item></todo-item>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var component = {
+				 template: '<h3>自定义组件!</h3>'
+			}
+			var app1 = new Vue({
+				el:'#app1',
+				components:{
+					'todo-item':component
+				}
+			});
+		</script>
+	</body>
+</html>
