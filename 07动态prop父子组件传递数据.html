@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>使用组件prop自定义属性，动态数据传递</title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			div.box {
+				width: 70%;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div id="app1">
+				<ol>
+					<!--
+      现在我们为每个 todo-item 提供 todo 对象
+      todo 对象是变量，即其内容可以是动态的。
+      我们也需要为每个组件提供一个“key”，晚些时候我们会做个解释。
+    -->
+					<todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id">
+					</todo-item>
+				</ol>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//注册组件
+			Vue.component('todo-item', {
+				props: ['todo'],
+				template: '<li>{{ todo.text }}</li>'
+			});
+			//实例化 根实例
+			var app1 = new Vue({
+				el: '#app1',
+				data: {
+					groceryList: [{
+							id: 0,
+							text: '蔬菜'
+						},
+						{
+							id: 1,
+							text: '奶酪'
+						},
+						{
+							id: 2,
+							text: '随便其他什么人吃的东西'
+						}
+					]
+				}
+			});
+		</script>
+	</body>
+
+</html>
