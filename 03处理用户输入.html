@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>处理用户输入</title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			div.box{
+				width: 60%;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<p>为了让用户和你的应用进行互动，我们可以用 v-on 指令绑定一个事件监听器，通过它调用我们 Vue 实例中定义的方法</p>
+			<p>
+				和类似onclick事件
+			</p>
+			<div id="app1">
+				<p>{{msg}}</p>
+				<button v-on:click="reverseMsg()">将上面的文本逆转</button>
+			</div>
+			<p>注意在 reverseMessage 方法中，我们更新了应用的状态，但没有触碰 DOM——所有的 DOM 操作都由 Vue 来处理，你编写的代码不需要关注底层逻辑。</p>
+			
+			<h2>数据双向绑定 v-model指令</h2>
+			<div id="app2">
+				<p>My name is {{value}}</p>
+				<input v-model="value"/>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var app1 = new Vue({
+				el:'#app1',
+				data:{
+					msg:"hello vue.js--哈喽"
+				},
+				methods:{
+					reverseMsg:function(){
+						//split() 将字符串 分割成数组
+						//reverse()  颠倒数组元素顺序
+						// join() 方法用于把数组中的所有元素放入一个字符串。
+						/*console.log(this.msg.split(''));
+						console.log(this.msg.split('').reverse());
+						console.log(this.msg.split('').reverse().join(''));*/
+						this.msg = this.msg.split('').reverse().join('')
+					}
+				}
+			});
+			
+			var app2 = new Vue({
+				el:'#app2',
+				data:{
+					value:'xuefeiCheng'
+				}
+			});
+		</script>
+	</body>
+</html>
