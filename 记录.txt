@@ -1,3 +1,5 @@
+本学习历程 根据 Vue.js中文文档【https://cn.vuejs.org/v2/guide/instance.html】学习
+官方文档为【https://vuejs.org/v2/guide/syntax.html】
 兼容性问题：vue.js不支持ie8以下的浏览器，原因是：ie8以下不能支持es5。
 使用方式：直接使用 script 标签引入即可。或者使用 cdn
 注：在使用vue.js构建大型应用时，推荐使用npm构建应用。
