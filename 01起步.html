@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>vue起步</title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			div.box{
+				width: 60%;
+				margin: 100px auto;
+			}
+			.col-1{color: red;}
+			.bgc{background-color: aquamarine;}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h2>通过script标签，引入vue.js</h2>
+			<h1>声明式渲染</h1>
+			<h2>Vue.js 的核心是一个允许采用简洁的模板语法来声明式的将数据渲染进 DOM：</h2>
+			<h3>1.文本插值的方式，绑定dom元素属性</h3>
+			<div id="myapp">
+				{{msg}}--{{msg2}}
+			</div>
+			<h3>2.使用指令绑定dom元素属性</h3>
+			<p>指令带有前缀 v-，以表示它们是 Vue 提供的特殊属性。可能你已经猜到了，它们会在渲染的 DOM 上应用特殊的响应式行为。简言之，这里该指令的作用是：“将这个元素节点的 title 属性和 Vue 实例的 msg 属性保持一致”。</p>
+			<div id="myapp-2">
+				<!--两种写法-->
+				<!--<span v-bind:title="msg" v-bind:class="col">-->
+				<span v-bind:title="msg" v-bind:class="[bgc,{'col-1':'true'}]">
+					鼠标悬停，展示当前文本创建时间
+				</span>
+				<span v-bind:style="{'background-image':'url(imgs/01.png)'}">背景图片</span>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			// 声明一个新的变量 为vue
+			//同时 数据和dom是绑定在一起的，所有元素都是响应式的
+			//测试：在控制台中，手动更改 msg的msg字段，相应的界面中的数据发生变化
+			var msg = new Vue({
+				el: '#myapp',
+				//el 对应 模板中的 id
+				data: {
+					//对应 模板中的调用
+					msg: "hello vue!",
+					msg2:"我是菜鸟"
+				}
+			});
+			var app2 = new Vue({
+				el:'#myapp-2',
+				data:{
+					//同样的 在控制台 可以更改 此属性，并且dom文档发生改变
+					msg:"悬停展示的文字"+ new Date().toLocaleString(),//该方法是 吧本地时间 转换成字符串
+					col:{
+						'col-1':"true"
+					},
+					bgc:'bgc'
+				}
+			});
+		</script>
+	</body>
+
+</html>
