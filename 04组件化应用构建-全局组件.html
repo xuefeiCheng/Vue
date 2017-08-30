@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>组件化应用构建</title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			div.box {
+				width: 60%;
+				margin: 100px auto;
+			}
+			.col-1{
+				color: cornflowerblue;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<p>
+				组件系统是 Vue 的另一个重要概念，因为它是一种抽象，允许我们使用小型、独立和通常可复用的组件构建大型应用。仔细想想，几乎任意类型的应用界面都可以抽象为一个组件树：
+			</p>
+			<img src="imgs/components.png" />
+			<p>
+				在 Vue 里，一个组件本质上是一个拥有预定义选项的一个 Vue 实例，在 Vue 中注册组件很简单：
+			</p>
+			<p>
+				现在你可以用它构建另一个组件模板：
+			</p>
+			<div id="app1">
+				<ol>
+					<!-- 创建一个 todo-item 组件的实例 -->
+					<todo-item v-bind:class="{'col-1':'true'}"></todo-item>
+				</ol>
+			</div>
+			<div id="app2">
+				<ul>
+					<!-- 创建一个 todo-item 组件的实例 -->
+					<todo-item v-bind:class="{'col-1':'true'}"></todo-item>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// 定义名为 todo-item 的新组建
+			Vue.component('todo-item', {
+				template: '<li>这是自定义的组件内容</li>'
+			});
+			var app1 = new Vue({
+				el: '#app1'
+			});
+			var app2 = new Vue({
+				el: '#app2'
+			});
+		</script>
+	</body>
+
+</html>
