@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>父组件单项传递数据给子组件</title>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<style type="text/css">
+			div.box {
+				width: 70%;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<div class="box">
+			<p>注意：要先注册 组件，再实例化 根实例</p>
+			<div id="app">
+				<todo msg='xuefeiCheng'></todo>
+			</div>
+		</div>
+		<script type="text/javascript">
+			
+			//实例化 一个组件
+			Vue.component('todo',{
+				//声明 自定义属性 props
+				props:['msg'],
+				template:'<span>{{msg}}</span>'
+			});
+			//创建 根实例
+			new Vue({
+				el:'#app'
+			});
+		</script>-->
+<!--以上实例 相当于 下面的代码部分，只是上面的代码能够 由父组件单项传递数据给子组件，不过在传递的时候，需要显示调用一下，先赋值再传递-->
+		<div class="box">
+			<p>注意：要先注册 组件，再实例化 根实例</p>
+			<div id="app">
+				<todo></todo>
+			</div>
+		</div>
+		<img src="imgs/父子组件数据单向传递数据.png"/>
+		<script type="text/javascript">
+			//实例化 一个组件
+			Vue.component('todo', {
+				template: '<msg></msg>'
+			});
+			Vue.component('msg', {
+				template: '<span>xuefeiCheng</span>'
+			});
+			//创建 根实例
+			new Vue({
+				el: '#app'
+			});
+		</script>
+	</body>
+
+</html>
