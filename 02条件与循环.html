@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>条件与循环</title>
+		<script src="js/vue.js"></script>
+		<style type="text/css">
+			div.box {
+				width: 60%;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<h2>条件 v-if指令</h2>
+			<button onclick="showMsg()">点击我展示隐藏信息</button>
+			<div id="app1">
+				<span v-if="hide">展示信息</span>
+			</div>
+			<p>这个例子演示了我们不仅可以绑定 DOM 文本到数据，也可以绑定 DOM 结构到数据。而且，Vue 也提供一个强大的过渡效果系统，可以在 Vue 插入/更新/删除元素时自动应用过渡效果。</p>
+			<h2>循环 v-for指令</h2>
+			<button onclick="addLi()">点击我新增一条记录</button>
+			<div id="app2">
+				<ol>
+					<li v-for="da in data">编号：{{da.id}}--姓名:{{da.name}}</li>
+				</ol>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function showMsg() {
+				//console.log(app1.hide);
+				app1.hide = !(app1.hide);
+			}
+			var i=2;
+			function addLi(){
+				/*console.log(i);
+				console.log(app2.data[i].id);*/
+				var newID = parseInt(app2.data[i].id)+1;
+				/*新增记录 使用 push*/
+				app2.data.push({
+						id: newID,
+						name: 'eee'
+					});
+					i++;
+			}
+			var app1 = new Vue({
+				el: '#app1',
+				data: {
+					hide: false
+				}
+			});
+			var app2 = new Vue({
+				el: '#app2',
+				data: {
+					data: [{
+						id: '1',
+						name: 'aaa'
+					}, {
+						id: '2',
+						name: 'bbb'
+					}, {
+						id: '3',
+						name: 'ccc'
+					}]
+				}
+			});
+		</script>
+	</body>
+
+</html>
