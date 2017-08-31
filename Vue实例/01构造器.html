@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>构造器</title>
+		<script src="../js/vue.js"></script>
+		<style type="text/css">
+			div.box {
+				width: 80%;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div id="app1">
+				<author></author>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//每一个 vue.js应用 都需要先 通过构造函数 构造一个 根实例 用于该vue应用启动
+			//vm 是 viewmodel的缩写
+			//虽然 vue.js不完全遵循 mvvm模式
+			var vm = new Vue({
+				//选项
+				el: '#app1'
+			});
+
+			//可以扩展 构造器
+			//目的 用于 用预定义选项创建可复用的组件构造器
+			var author = Vue.extend({
+				template: "<p><a :href='url'>{{author}}</a></p>",
+				data: function() {
+					return {
+						author: 'vamous',
+						url: 'http://blog.csdn.net/Dear_Mr/article/details/72614370'
+					}
+				}
+			});
+			new author().$mount('author');
+		</script>
+	</body>
+
+</html>
