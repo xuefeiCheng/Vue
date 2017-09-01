@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>特性</title>
+		<script src="../js/vue.js"></script>
+		<style type="text/css">
+			div.box {
+				width: 80%;
+				margin: 100px auto;
+			}
+			
+			.color-1 {
+				color: #0078A8;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div id="app">
+				<span v-bind:class="colorA">
+					使用 v-bind 指令，可以修改属性等特性，使用“Mustache” 语法（双大括号）语法，没办法动态更改或者显示
+				</span>
+				<img v-bind:src="'../imgs/'+fileName+'.jpg'" />			
+			</div>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data: {
+					fileName: 'fan',
+					colorA: 'color-1'
+				}
+			})
+		</script>
+	</body>
+
+</html>
