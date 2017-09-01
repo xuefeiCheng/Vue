@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>文本+纯html插值</title>
+		<script src="../js/vue.js"></script>
+		<style type="text/css">
+			div.box{
+				width: 80%;
+				margin: 100px auto;
+			}
+			.color-1{
+				color: #3388FF;
+			}
+			.color-2{
+				color: #0078A8;
+			}
+			.color-3{
+				color:#7FFFD4
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="box">
+			<div id="app1">
+				<p>http://www.jianshu.com/p/4131e8b033de</p>
+				<button onclick="changeMsg()">msg值变更，使用v-once指令，不受影响</button>
+				<p>文本插值，使用{{}}语法，输出都是纯文本。</p>
+				<p>Mustache 标签将会被替代为对应数据对象上 msg 属性的值。无论何时，绑定的数据对象上 msg 属性发生了改变，插值处的内容都会更新。</p>
+				<span class="color-1">{{msg}}</span>
+				<p>通过使用 v-once 指令，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。但请留心这会影响到该节点上所有的数据绑定：</p>
+				<span v-once class="color-2">{{msg}}</span>
+				<p>v-text指令，也是以文本的形式输出。</p>
+				<div v-text="text1" class="color-3"></div>
+				<p>纯html插值，使用v-html指令，会以html语句的形式输出</p>
+				<div v-html="html"></div>
+				<h3>v-text指令，可以直接使用属性进行语句拼接</h3>
+				<span v-text="'今天是'+year+'年'+month+'月'" class="color-1"></span>
+				<ol>
+					<li>这里v-text=""，双引号并不是代表字符串，而是vue自定义的划定界限的符号。如果我们里边输出字符串，就要在里边再添加一对单引号。而且经测验，要想输出字符串，必须添加单引号，否则会报错</li>
+					<li>这里month默认是从0开始的，所以我们要+1</li>
+					<li>这里 “Mustache” 语法（双大括号）代表的就是""，所以在v-text=""中，我们在内容里边就不需要再写 “Mustache” 语法（双大括号）了，直接写data值就行</li>
+				</ol>
+				<span class="color-2">等价于 使用  “Mustache” 语法（双大括号）语法：今天是{{year}}年{{month}}月</span>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var app1 = new Vue({
+				el:'#app1',
+				data:{
+					msg:'<img src="../imgs/fan.JPG"/>',
+					html:'<img src="../imgs/fan.JPG" style="width:100px;height:100px"/>',
+					text1:'<img src="../imgs/fan.JPG"/>',
+					year : new Date().getFullYear(),
+        			month : new Date().getMonth()+1
+				}
+			});
+			function changeMsg(){
+				app1.msg = "msg变更!"
+			}
+		</script>
+	</body>
+</html>
