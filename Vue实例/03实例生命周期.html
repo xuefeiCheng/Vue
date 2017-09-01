@@ -13,10 +13,32 @@
 	</head>
 	<body>
 		<div class="box">
-			
+			<p>
+				每个 Vue 实例在被创建之前都要经过一系列的初始化过程。
+				例如，实例需要配置数据观测(data observer)、编译模板、挂载实例到 DOM ，
+				然后在数据变化时更新 DOM 。在这个过程中，实例也会调用一些 生命周期钩子 ，
+				这就给我们提供了执行自定义逻辑的机会。例如，created 这个钩子在实例被创建之后被调用：
+			</p>
+			<p>
+				也有一些其它的钩子，在实例生命周期的不同场景下调用，如 mounted、updated、destroyed。钩子的 this 指向调用它的 Vue 实例。
+			</p>
+			<div id="app">
+				根实例代理的属性a = {{a}}
+			</div>
+			<p>以下是 实例 的生命周期 展示图</p>
+			<img src="../imgs/lifecycle.png"/>
 		</div>
 		<script type="text/javascript">
-			
+			new Vue({
+				el:'#app',
+				data:{
+					a:1
+				},
+				//创建时 被调用
+				created:function(){
+					console.log("实例被创建了！实例代理的属性a的值是："+this.a)
+				}
+			});
 		</script>
 	</body>
 </html>
