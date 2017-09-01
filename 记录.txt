@@ -1,4 +1,4 @@
-本学习历程 根据 Vue.js中文文档【https://cn.vuejs.org/v2/guide/instance.html】学习
+﻿本学习历程 根据 Vue.js中文文档【https://cn.vuejs.org/v2/guide/instance.html】学习
 官方文档为【https://vuejs.org/v2/guide/syntax.html】
 兼容性问题：vue.js不支持ie8以下的浏览器，原因是：ie8以下不能支持es5。
 使用方式：直接使用 script 标签引入即可。或者使用 cdn
@@ -30,3 +30,7 @@ vue属性与方法
 所以在vue应用中，提供了一些有用的实例属性与方法，这些实例都有前缀 $，一旦出现此前缀，意思就是修改的死根实例中的 字段，例如 $el
 同时也提供了 一些实例方法，例如 $watch 用于监听 属性 for example：vm1.$watch('b', function(newVal, oldVal) {//只用在属性b发生变化的时候，才会调用此方法})
 vm1 是 vue应用构造的根实例
+
+关于git 又学到了一手，逛知乎的时候，看到的。
+在代码提交之前一定要 git diff（svn diff）一下，学会查看代码更改。
+之前只是会看一下 代码仓库中的 git状态，现在可以看一下 ，代码具体更改情况了。
