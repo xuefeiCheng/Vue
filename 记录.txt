@@ -65,3 +65,11 @@ mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 v
 在绑定 class 或 style 特性时，支持其它类型的值，如数组或对象。可以通过下面的教程链接查看详情。
 在绑定 prop 时，prop 必须在子组件中声明。可以用修饰符指定不同的绑定类型。
 没有参数时，可以绑定到一个包含键值对的对象。注意此时 class 和 style 绑定不支持数组和对象。
+
+在vue中使用js表达式：
+和angularjs类似，在双括号中也可以直接使用 javascript表达式；
+
+关于v-bind指令：
+<div v-bind:id="'list-' + id">nihao</div>终于弄懂是什么意思了
+其实就是 给这个div动态添加一个id名；
+后续操作，例如$("#list-test").css("font-size",'24px');
