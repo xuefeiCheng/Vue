@@ -40,7 +40,10 @@
 			
 			<h2>2.v-on缩写</h2>
 			<p class="border"></p>
-			
+			<!--完整语法-->
+			<button v-on:click="tiaozhuan">跳转到我的 GitHub</button>
+			<!--缩写-->
+			<button @click="tiaozhuan">跳转到我的 GitHub</button>
 		</div>
 		<script type="text/javascript">
 			var app = new Vue({
@@ -54,6 +57,9 @@
 				,methods:{
 					jiejiu:function(){
 						app.dis1 = true
+					}
+					,tiaozhuan:function(){
+						 window.location.href = app.url
 					}
 				}
 			});
