@@ -113,3 +113,5 @@ new Vue({
 					fontA:'font-1'
 				}
 			})
+			
+Vue.js 包装了被观察数组的变异方法，故它们能触发视图更新。被包装的方法有：push(), pop(), shift(), unshift(), splice(), sort(), reverse()
