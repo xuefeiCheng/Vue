@@ -19,7 +19,8 @@
 		<div class="box">
 			<div id="app">
 				<h2> v-if指令，dom节点直接删除或者添加，不是隐藏，angularjs中类似的是 ng-if，而ng-show是隐藏显示</h2>
-				<p v-if="seen" v-bind:class="{'color-1':true}">现在你看到我了</p><p v-if="hide">现在你看不到我了</p>
+				<!--v-bind:class 缩写 :class-->
+				<p v-if="seen" :class="{'color-1':true}">现在你看到我了</p><p v-if="hide">现在你看不到我了</p>
 			</div>
 		</div>
 		<script type="text/javascript">
