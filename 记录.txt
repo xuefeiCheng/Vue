@@ -73,3 +73,43 @@ mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 v
 <div v-bind:id="'list-' + id">nihao</div>终于弄懂是什么意思了
 其实就是 给这个div动态添加一个id名；
 后续操作，例如$("#list-test").css("font-size",'24px');
+
+关于 v-bind:class指令：
+1，直接定义在 根实例 data中
+2，直接在dom节点上 调用 style中的class
+3，调用 style中的class和根实例中data中的 定义，多个class
+style
+.color-1{
+				color: #0078A8;
+			}
+.font-1{
+font-size:20px;
+}
+栗子1：
+html
+<p v-bind:class="colorA">我的颜色是特殊的</p>
+js
+new Vue({
+				el:'#app',
+				data:{
+					seen:true,
+					hide:false,
+					colorA:'color-1'
+				}
+			})
+栗子2：
+html
+<p v-bind:class="{'color-1':true}">我的颜色是特殊的</p>
+栗子3：
+html
+<p v-bind:class="[fontA,{'color-1':true}]">我的颜色是特殊的</p>
+js
+new Vue({
+				el:'#app',
+				data:{
+					seen:true,
+					hide:false,
+					colorA:'color-1',
+					fontA:'font-1'
+				}
+			})
