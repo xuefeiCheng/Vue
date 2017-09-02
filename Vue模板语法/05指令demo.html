@@ -26,6 +26,9 @@
 			.color-1 {
 				color: #0078A8;
 			}
+			.color-2{
+				color: #0055FF;
+			}
 		</style>
 	</head>
 
@@ -55,7 +58,7 @@
 
 			<h2>3.过滤器</h2>
 			<p class="border"></p>
-			<p>内置过滤器 </p>
+			<h2 :class="colorA">内置过滤器list </h2>
 			<h3>注意内置过滤器在2.0版本以后就废弃了，需要我们自己去自定义，此文档引用的是 1.0版本的vue.js</h3>
 			<table>
 				<tr>
@@ -99,7 +102,7 @@
 					<td align="center">在 v-for 中使用，排序</td>
 				</tr>
 			</table>
-			<p>内置过滤器使用</p>
+			<h2 :class="colorA">内置过滤器使用</h2>
 			<table>
 				<tr>
 					<th align="center">代码</th>
@@ -191,12 +194,13 @@
 				<li v-for="a in ordernum">元数据--{{a.name}}-{{a.age}}</li>
 				<li v-for="a in ordernum | orderBy 'age'">以'age'排序，默认升序--{{a.name}}-{{a.age}}</li>
 				<li v-for="a in ordernum | orderBy 'age' -1">以'age'降序排序--{{a.name}}-{{a.age}}</li>
-				<li></li>
 			</ul>
 			<!--使用函数排序-->
 			<ul>
 				<li v-for="b in ordernum | orderBy 'age' ageByTen">{{b.age}}</li>
 			</ul>
+			<h2 :class="colorA">自定义过滤器使用</h2>
+			{{msg | Capitalize }}
 		</div>
 		<script type="text/javascript">
 			var app = new Vue({
@@ -204,6 +208,7 @@
 				data: {
 					imgUrl: '../imgs/fan.JPG',
 					url: 'https://github.com/xuefeiCheng',
+					colorA:'color-2',
 					dis: true,
 					dis1: false,
 					msg: 'xuefeiCheng',
@@ -268,9 +273,16 @@
 					},
 					click1: function() {
 						alert("你找我啊，我的地址是：https://github.com/xuefeiCheng")
+					},
+					ageByTen: function() {
+						return 1; //升序排列
 					}
-					,ageByTen:function(){
-						return 1;//升序排列
+				},
+				filters: {
+					Capitalize: function(value) {
+						if(!value) return ''
+						value = value.toString()
+						return value.charAt(0).toUpperCase() + value.slice(1)
 					}
 				}
 			});
