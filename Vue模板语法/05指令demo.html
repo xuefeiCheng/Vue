@@ -220,6 +220,30 @@
 			</template>
 			<p>v-show指令--注意v-show指令不是dom节点的增删，而是隐藏，一直存在于dom节点上</p>
 			<h1 v-show="ok">Hello!</h1>
+			<h2>5.列表渲染</h2>
+			<p class="border"></p>
+			<p>渲染数组</p>
+			<ul v-for="aa in arrays">
+				<li>{{aa}}</li>
+			</ul>
+			<p>渲染包含对象的数组</p>
+			<ul v-for="bb in ordernum">
+				<li>{{bb.name}}:{{bb.age}}</li>
+			</ul>
+			<p>渲染对象</p>
+			<ul v-for="value in obj">
+				<li>{{$key}}:{{value}}</li>
+			</ul>
+			<p>在template中 v-for</p>
+			<ul>
+				<template v-for="aa in arrays">
+					<li>{{aa}}</li>
+				</template>
+			</ul>
+			<p>值域 v-for</p>
+			<div>
+				<span v-for="n in 10">{{ n }} </span>
+			</div>
 		</div>
 		<script type="text/javascript">
 			var app = new Vue({
@@ -234,6 +258,10 @@
 					msg: 'xuefeiCheng',
 					num: 666.66,
 					str: 'son',
+					obj: {
+						Name: 'xuefeiCheng',
+						Age: 23
+					},
 					items: {
 						a: 'item1',
 						b: 'ha',
