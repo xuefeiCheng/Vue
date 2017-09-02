@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>指令demo</title>
 		<script src="../js/jquery.js"></script>
 		<script src="../js/vue.js"></script>
 		<style type="text/css">
-			div.box{
+			div.box {
 				width: 80%;
 				margin: 50px auto;
 				padding: 10px 20px;
 				background-color: #f6f6f6;
 			}
-			.border{
+			
+			.border {
 				border-bottom: 2px solid #eee;
 			}
-			.imgClass{
+			
+			.imgClass {
 				width: 100px;
 				height: 100px;
 			}
 		</style>
 	</head>
+
 	<body>
 		<div class="box" id="app">
 			<h2>1.v-bind缩写</h2>
 			<p class="border"></p>
 			<!--完整语法-->
-			<img v-bind:src="imgUrl" v-bind:class="{'imgClass':true}"/>
+			<img v-bind:src="imgUrl" v-bind:class="{'imgClass':true}" />
 			<!--缩写-->
-			<img :src="imgUrl" :class="{'imgClass':true}"/>
+			<img :src="imgUrl" :class="{'imgClass':true}" />
 			<!--完整语法-->
 			<a v-bind:href="url">我的GitHub</a>
 			<!--缩写-->
@@ -37,32 +41,79 @@
 			<button v-bind:disabled="dis">我被禁用了</button>
 			<!--缩写-->
 			<button :disabled="dis1" @click="jiejiu">点击我，禁用我</button>
-			
+
 			<h2>2.v-on缩写</h2>
 			<p class="border"></p>
 			<!--完整语法-->
 			<button v-on:click="tiaozhuan">跳转到我的 GitHub</button>
 			<!--缩写-->
 			<button @click="tiaozhuan">跳转到我的 GitHub</button>
+
+			<h2>3.过滤器</h2>
+			<p class="border"></p>
+			<p>内置过滤器</p>
+			<table>
+				<tr>
+					<th align="center">名称</th>
+					<th align="center">功能</th>
+				</tr>
+				<tr>
+					<td>capitalize</td>
+					<td>首字母大写</td>
+				</tr>
+				<tr>
+					<td>uppercase</td>
+					<td>全部大写</td>
+				</tr>
+				<tr>
+					<td>lowercase</td>
+					<td>全部小写</td>
+				</tr>
+				<tr>
+					<td>currency</td>
+					<td>设置货币、精确值</td>
+				</tr>
+				<tr>
+					<td>pluralize</td>
+					<td>输出复数的形式</td>
+				</tr>
+				<tr>
+					<td>debounce</td>
+					<td>延期执行函数</td>
+				</tr>
+				<tr>
+					<td>limitBy</td>
+					<td>在 v-for 中使用，限制数量</td>
+				</tr>
+				<tr>
+					<td>filterBy</td>
+					<td>在 v-for 中使用，选择数据</td>
+				</tr>
+				<tr>
+					<td>orderBy</td>
+					<td>在 v-for 中使用，排序</td>
+				</tr>
+			</table>
 		</div>
 		<script type="text/javascript">
 			var app = new Vue({
-				el:'#app'
-				,data:{
-					imgUrl:'../imgs/fan.JPG'
-					,url:'https://github.com/xuefeiCheng'
-					,dis:true
-					,dis1:false
-				}
-				,methods:{
-					jiejiu:function(){
+				el: '#app',
+				data: {
+					imgUrl: '../imgs/fan.JPG',
+					url: 'https://github.com/xuefeiCheng',
+					dis: true,
+					dis1: false
+				},
+				methods: {
+					jiejiu: function() {
 						app.dis1 = true
-					}
-					,tiaozhuan:function(){
-						 window.location.href = app.url
+					},
+					tiaozhuan: function() {
+						window.location.href = app.url
 					}
 				}
 			});
 		</script>
 	</body>
+
 </html>
