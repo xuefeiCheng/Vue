@@ -26,7 +26,8 @@
 			.color-1 {
 				color: #0078A8;
 			}
-			.color-2{
+			
+			.color-2 {
 				color: #0055FF;
 			}
 		</style>
@@ -199,8 +200,26 @@
 			<ul>
 				<li v-for="b in ordernum | orderBy 'age' ageByTen">{{b.age}}</li>
 			</ul>
-			<h2 :class="colorA">自定义过滤器使用</h2>
-			{{msg | Capitalize }}
+			<h2 :class="colorA">自定义过滤器使用</h2> {{msg | Capitalize }}
+			<h2>4.条件渲染</h2>
+			<p class="border"></p>
+			<p>v-if指令</p>
+			<p v-if="ok" :class="{'color-1':true}">Yes</p>
+			<p v-else :class="{'color-1':true}">No</p>
+
+			<p v-if="Math.random() > 0.5" :class="{'color-1':true}" v-text="Math.random()+'>0.5,sorry'">
+			</p>
+			<p v-else :class="{'color-1':true}">
+				随机数Not>0.5, sorry
+			</p>
+			<p>template中v-if指令</p>
+			<template v-if="ok">
+				<h1>Title</h1>
+				<p>Paragraph 1</p>
+				<p>Paragraph 2</p>
+			</template>
+			<p>v-show指令--注意v-show指令不是dom节点的增删，而是隐藏，一直存在于dom节点上</p>
+			<h1 v-show="ok">Hello!</h1>
 		</div>
 		<script type="text/javascript">
 			var app = new Vue({
@@ -208,7 +227,8 @@
 				data: {
 					imgUrl: '../imgs/fan.JPG',
 					url: 'https://github.com/xuefeiCheng',
-					colorA:'color-2',
+					colorA: 'color-2',
+					ok: true,
 					dis: true,
 					dis1: false,
 					msg: 'xuefeiCheng',
