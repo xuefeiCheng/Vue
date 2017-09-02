@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<title>指令demo</title>
 		<script src="../js/jquery.js"></script>
-		<script src="../js/vue.js"></script>
+		<script src="../js/vue1.js"></script>
 		<style type="text/css">
 			div.box {
 				width: 80%;
@@ -21,6 +21,10 @@
 			.imgClass {
 				width: 100px;
 				height: 100px;
+			}
+			
+			.color-1 {
+				color: #0078A8;
 			}
 		</style>
 	</head>
@@ -51,7 +55,8 @@
 
 			<h2>3.过滤器</h2>
 			<p class="border"></p>
-			<p>内置过滤器</p>
+			<p>内置过滤器 </p>
+			<h3>注意内置过滤器在2.0版本以后就废弃了，需要我们自己去自定义，此文档引用的是 1.0版本的vue.js</h3>
 			<table>
 				<tr>
 					<th align="center">名称</th>
@@ -59,41 +64,139 @@
 				</tr>
 				<tr>
 					<td>capitalize</td>
-					<td>首字母大写</td>
+					<td align="center">首字母大写</td>
 				</tr>
 				<tr>
 					<td>uppercase</td>
-					<td>全部大写</td>
+					<td align="center">全部大写</td>
 				</tr>
 				<tr>
 					<td>lowercase</td>
-					<td>全部小写</td>
+					<td align="center">全部小写</td>
 				</tr>
 				<tr>
 					<td>currency</td>
-					<td>设置货币、精确值</td>
+					<td align="center">设置货币、精确值</td>
 				</tr>
 				<tr>
 					<td>pluralize</td>
-					<td>输出复数的形式</td>
+					<td align="center">输出复数的形式</td>
 				</tr>
 				<tr>
 					<td>debounce</td>
-					<td>延期执行函数</td>
+					<td align="center">延期执行函数</td>
 				</tr>
 				<tr>
 					<td>limitBy</td>
-					<td>在 v-for 中使用，限制数量</td>
+					<td align="center">在 v-for 中使用，限制数量</td>
 				</tr>
 				<tr>
 					<td>filterBy</td>
-					<td>在 v-for 中使用，选择数据</td>
+					<td align="center">在 v-for 中使用，选择数据</td>
 				</tr>
 				<tr>
 					<td>orderBy</td>
-					<td>在 v-for 中使用，排序</td>
+					<td align="center">在 v-for 中使用，排序</td>
 				</tr>
 			</table>
+			<p>内置过滤器使用</p>
+			<table>
+				<tr>
+					<th align="center">代码</th>
+					<th align="center">结果</th>
+					<th align="center">功能</th>
+					<th align="center">说明</th>
+				</tr>
+				<tr>
+					<td>msg | capitalize</td>
+					<td align="center">{{msg | capitalize }}</td>
+					<td align="center">首字母大写</td>
+					<td align="center">msg原信息 xuefeiCheng</td>
+				</tr>
+				<tr>
+					<td>msg | uppercase</td>
+					<td align="center">{{msg | uppercase}}</td>
+					<td align="center">全部大写</td>
+					<td align="center">msg原信息 xuefeiCheng</td>
+				</tr>
+				<tr>
+					<td>msg | lowercase</td>
+					<td align="center">{{msg | lowercase}}</td>
+					<td align="center">全部小写</td>
+					<td align="center">msg原信息 xuefeiCheng</td>
+				</tr>
+				<tr>
+					<td>num | currency</td>
+					<td align="center">{{num | currency '$' 1}}</td>
+					<td align="center">设置货币、精确值</td>
+					<td align="center">num原信息 666.66</td>
+				</tr>
+				<tr>
+					<td>pluralize</td>
+					<td align="center">{{str | pluralize 'son'}}</td>
+					<td align="center">输出复数的形式</td>
+					<td align="center">str原信息 son,对象item复数输出，看###对象复数</td>
+				</tr>
+				<tr>
+					<td>click1 | debounce 1000</td>
+					<td align="center"><button @click="click1 | debounce 1000">点击我，1000ms之后</button></td>
+					<td align="center">延期执行函数</td>
+					<td> 限制：需在@里面使用,参数:{Number} [wait] - 默认值： 300</td>
+				</tr>
+				<tr>
+					<td>v-for="item in lili | limitBy 1 1"</td>
+					<td align="center">在 ###limitBy 中查看</td>
+					<td align="center">在 v-for 中使用，限制数量</td>
+					<td> 限制：需在v-for(即数组)里面使用,第一个参数:{Number} 取得数量;第二个参数:{Number} 偏移量</td>
+				</tr>
+				<tr>
+					<td> v-for="item in man | filterBy 'l' in 'name' 'dada' </td>
+					<td align="center">在 ###filterBy 中查看</td>
+					<td align="center">在 v-for 中使用，选择数据</td>
+					<td> 限制：需在v-for(即数组)里面使用,第一个参数: {String | Function} 需要搜索的字符串；第二个参数: in (可选,指定搜寻位置)；第三个参数: {String} (可选,数组格式)</td>
+				</tr>
+				<tr>
+					<td> v-for="a in ordernum | orderBy 'age' -1</td>
+					<td align="center">在 ###orderBy 中查看</td>
+					<td align="center">在 v-for 中使用，排序</td>
+					<td>限制：需在v-for(即数组)里面使用;第一个参数: {String | Array
+						<String> | Function} 需要搜索的字符串;第二个参数: {String} 可选参数 order 决定结果升序（order >= 0）或降序（order
+							< 0）,默认是升序</td>
+				</tr>
+			</table>
+			<p>###对象复数</p>
+			<ol>
+				<!--多个失效 感觉这个过滤器在多个数据的时候一点用都没有-->
+				<li v-for="item in items">{{item | pluralize 'item1' 'ha'}}</li>
+			</ol>
+			<ul>
+				<li v-for="it in arrays">{{it | pluralize 'haha'}}</li>
+			</ul>
+			<p>###limitBy</p>
+			<ul>
+				<li v-for="it in arrays">元数据--{{it}}</li>
+				<li v-for="it in arrays | limitBy 1 1">{{it}}</li>
+			</ul>
+			<p>###filterBy</p>
+			<ul>
+				<li v-for="i in man">元数据--{{i.name}}{{i.nam}}</li>
+				<li v-for="i in man | filterBy 'l'">查找'l'数据--{{i.name}}</li>
+				<li v-for="i in man | filterBy 'x' in 'nam' ">查找在nam中含有x的数据--{{i.nam}}</li>
+				<li v-for="i in man | filterBy 'o' in 'nam' 'name' ">查找在nam中含有x的数据,以name的格式展示--{{i.name}}{{i.nam}}</li>
+				<li :class="{'color-1':true}">展示的是 所有的 含有 'o'的数据，why？</li>
+			</ul>
+			<p>###orderBy</p>
+			<ul>
+				<!--遍历含有对象的数组-->
+				<li v-for="a in ordernum">元数据--{{a.name}}-{{a.age}}</li>
+				<li v-for="a in ordernum | orderBy 'age'">以'age'排序，默认升序--{{a.name}}-{{a.age}}</li>
+				<li v-for="a in ordernum | orderBy 'age' -1">以'age'降序排序--{{a.name}}-{{a.age}}</li>
+				<li></li>
+			</ul>
+			<!--使用函数排序-->
+			<ul>
+				<li v-for="b in ordernum | orderBy 'age' ageByTen">{{b.age}}</li>
+			</ul>
 		</div>
 		<script type="text/javascript">
 			var app = new Vue({
@@ -102,7 +205,59 @@
 					imgUrl: '../imgs/fan.JPG',
 					url: 'https://github.com/xuefeiCheng',
 					dis: true,
-					dis1: false
+					dis1: false,
+					msg: 'xuefeiCheng',
+					num: 666.66,
+					str: 'son',
+					items: {
+						a: 'item1',
+						b: 'ha',
+						c: 'heihei'
+					},
+					arrays: ['haha', 'joy'],
+					man: [ //此处注意man是数组,不是对象
+						{
+							name: "lily",
+							age: 20
+						}, {
+							name: "lucy",
+							age: 23
+						}, {
+							name: "oo",
+							age: 10
+						}, {
+							name: "lsh",
+							age: 12
+						}, {
+							name: "ofg",
+							age: 14
+						}, {
+							nam: 'joy',
+							age: 43
+						}, {
+							nam: 'xuefeiCheng',
+							age: 55
+						}
+					],
+					ordernum: [ //此处注意man是数组,不是对象
+						{
+							name: "lily",
+							age: 20
+						}, {
+							name: "lucy",
+							age: 23
+						}, {
+							name: "oo",
+							age: 10
+						}, {
+							name: "lsh",
+							age: 12
+						}, {
+							name: "ofg",
+							age: 14
+						}
+					]
+
 				},
 				methods: {
 					jiejiu: function() {
@@ -110,6 +265,12 @@
 					},
 					tiaozhuan: function() {
 						window.location.href = app.url
+					},
+					click1: function() {
+						alert("你找我啊，我的地址是：https://github.com/xuefeiCheng")
+					}
+					,ageByTen:function(){
+						return 1;//升序排列
 					}
 				}
 			});
