@@ -34,6 +34,15 @@
 				<button v-bind:disabled="someDynamicCondition">老王1</button>
 				<!--缩写-->
 				<button :disabled="someDynamicCondition">老王2</button>
+				<h3>一些指令可以接收参数，例如 v-bind:class 其中class就是该指令接收的参数。用于告知v-bind指令，将该元素的class属性与表达式 {'color-1':true}绑定</h3>
+				<h3>##修饰符</h3>
+				<p>
+					修饰符（Modifiers）是以半角句号 . 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。
+				</p>
+				<p>
+					比如修饰符v-on:click.stop="test",是阻止冒泡的事件发生，即stopPropagation()，其他的也类似，只不过vue把这些方法封装起来了，用着更方便。
+				</p>
+				<button @click.stop="click1">点击我，上面老王们禁用</button>
 			</div>
 		</div>
 		<script type="text/javascript">
