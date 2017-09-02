@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>指令demo</title>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/vue.js"></script>
+		<style type="text/css">
+			div.box{
+				width: 80%;
+				margin: 50px auto;
+				padding: 10px 20px;
+				background-color: #f6f6f6;
+			}
+			.border{
+				border-bottom: 2px solid #eee;
+			}
+			.imgClass{
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="app">
+			<h2>1.v-bind缩写</h2>
+			<p class="border"></p>
+			<!--完整语法-->
+			<img v-bind:src="imgUrl" v-bind:class="{'imgClass':true}"/>
+			<!--缩写-->
+			<img :src="imgUrl" :class="{'imgClass':true}"/>
+			<!--完整语法-->
+			<a v-bind:href="url">我的GitHub</a>
+			<!--缩写-->
+			<a :href="url">我的GitHub</a>
+			<!--完整语法-->
+			<button v-bind:disabled="dis">我被禁用了</button>
+			<!--缩写-->
+			<button :disabled="dis1" @click="jiejiu">点击我，禁用我</button>
+			
+			<h2>2.v-on缩写</h2>
+			<p class="border"></p>
+			
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:'#app'
+				,data:{
+					imgUrl:'../imgs/fan.JPG'
+					,url:'https://github.com/xuefeiCheng'
+					,dis:true
+					,dis1:false
+				}
+				,methods:{
+					jiejiu:function(){
+						app.dis1 = true
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
