@@ -115,3 +115,9 @@ new Vue({
 			})
 			
 Vue.js 包装了被观察数组的变异方法，故它们能触发视图更新。被包装的方法有：push(), pop(), shift(), unshift(), splice(), sort(), reverse()
+
+解决每次git提交时，都要输入密码和用户名
+git config --global credential.helper store
+☞这一步会在用户目录下生成文件.git-credential记录用户名密码的信息.
+☞ git config --global 命令实际上在操作用户目录下的.gitconfig文件, 我们cat一下此文件(cat .gitconfig)
+push一次就好了
