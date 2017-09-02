@@ -1,0 +1,23 @@
+div.box {
+	width: 80%;
+	margin: 50px auto;
+	padding: 10px 20px;
+	background-color: #f6f6f6;
+}
+
+.border {
+	border-bottom: 2px solid #eee;
+}
+
+.imgClass {
+	width: 100px;
+	height: 100px;
+}
+
+.color-1 {
+	color: #0078A8;
+}
+
+.color-2 {
+	color: #0055FF;
+}
