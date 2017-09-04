@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>html全局样式-对象语法</title>
+		<script src="../../js/vue.js"></script>
+		<link rel="stylesheet" href="../../css/main.css" />
+	</head>
+	<body>
+		<div class="box" id="app">
+			<p>
+				数据绑定一个常见需求是操作元素的 class 列表和它的内联样式。因为它们都是属性 ，我们可以用v-bind 处理它们：只需要计算出表达式最终的字符串。不过，字符串拼接麻烦又易错。因此，在 v-bind 用于 class 和 style 时， Vue.js 专门增强了它。表达式的结果类型除了字符串之外，还可以是对象或数组。
+			</p>
+			<p>### 对象语法</p>
+			<p>
+				我们可以传给 v-bind:class 一个对象，以动态地切换 class：
+			</p>
+			<p :class="{'color-1':isActive}">一个对象，一个属性</p>
+			<p :class="{'color-1':isActive,'font-1':isActive}">一个对象，多个属性</p>
+			<p :class="{'color-1':isActive,'font-1':hasError}" class="font-2">一个对象，多个属性, class与 :class并存</p>
+			<p :class="classObj">直接绑定数据中的一个对象</p>
+			<p :class="classObject">绑定返回对象的计算属性</p>
+		</div>
+		<script>
+			var app = new Vue({
+				el:'#app',
+				data:{
+					classObj:{
+						"color-2":true,
+						"font-2":true
+					},
+					isActive:true,
+					hasError:false
+				}
+				,computed:{
+					classObject:function(){
+						return {
+							'font-1':this.isActive,
+							'color-2':!this.hasError && this.isActive
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
