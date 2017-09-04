@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>html全局样式--数组语法</title>
+		<script type="text/javascript" src="../../js/vue.js" ></script>
+		<link rel="stylesheet" href="../../css/main.css" />
+	</head>
+	<body>
+		<div class="box" id="app">
+			<p>###数组语法</p>
+			<p>我们可以把一个数组传给 v-bind:class，以应用一个 class 列表</p>
+			<p :class="[colorA,fontA]">接收一个class数组</p>
+			<p :class="[fontA,{'color-2':true}]">数组中嵌套对象</p>
+			<p :class="[isActive ? colorA : colorB,fontA,{'border':true}]">使用三元表达式，多个class</p>
+		</div>
+		<script>
+			new Vue({
+				el:'#app',
+				data:{
+					colorA:'color-1',
+					colorB:'color-2',
+					fontA:'font-1',
+					isActive:true
+				}
+			})
+		</script>
+	</body>
+</html>
