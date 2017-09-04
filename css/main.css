@@ -21,3 +21,11 @@ div.box {
 .color-2 {
 	color: #0055FF;
 }
+.font-1{
+	font-family: arial;
+	font-size: 18px;
+}
+.font-2{
+	font-family: "微软雅黑";
+	font-size: 20px;
+}
