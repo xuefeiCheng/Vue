@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>html内联样式--对象语法</title>
+		<script type="text/javascript" src="../../js/vue.js" ></script>
+		<link rel="stylesheet" href="../../css/main.css" />
+	</head>
+	<body>
+		<div class="box" id="app">
+			<p>
+				v-bind:style 的对象语法十分直观——看着非常像 CSS，其实它是一个 JavaScript 对象。 CSS 属性名可以用驼峰式 (camelCase) 或 (配合引号的) 短横分隔命名 (kebab-case)
+			</p>
+			<p :style="{color:colorA,fontSize:fontA+'px'}">绑定数据中的属性，组织成对象</p>
+			<p :style="styleObj">直接绑定数据中的对象</p>
+		</div>
+		<script>
+			new Vue({
+				el:'#app',
+				data:{
+					colorA:'#0078A8',
+					fontA:20,
+					styleObj:{
+						color:'#0055FF',
+						fontSize:'18px'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
