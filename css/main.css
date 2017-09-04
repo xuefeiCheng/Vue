@@ -13,6 +13,10 @@ div.box {
 	width: 100px;
 	height: 100px;
 }
+.imgClass-baner {
+	width: 100%;
+	height: 30%;
+}
 
 .color-1 {
 	color: #0078A8;
