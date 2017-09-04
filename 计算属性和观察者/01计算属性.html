@@ -1,25 +1,94 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>计算属性</title>
 		<script src="../js/vue.js"></script>
 		<style>
-			div.box{
-				width:80%;
+			div.box {
+				width: 50%;
 				margin: 100px auto;
 			}
 		</style>
 	</head>
+
 	<body>
 		<div class="box" id="app">
-			
+			<p>data:{{data}}</p>
+			<p>模板内表达式：{{data.split("").reverse().join('')}}</p>
+			<!--我们为什么需要缓存？
+				假设我们有一个性能开销比较大的的计算属性 A，它需要遍历一个极大的数组和做大量的计算。
+			然后我们可能有其他的计算属性依赖于 A 。
+			如果没有缓存，我们将不可避免的多次执行 A 的 getter！
+			如果你不希望有缓存，请用 method 替代。-->
+			<p>使用计算属性: {{reservedData}}</p>
+			<p>使用方法调用: {{reservedData1()}}</p>
+			<p>fullName:{{fullName}}</p>
+			<p>计算属性方法：{{getfullName}}</p>
+			<p>watch方法:{{fullName}}</p>
+			<p>设置计算属性setter:{{test1}}</p>
 		</div>
 		<script>
 			//构造器 构造根实例
 			var app = new Vue({
-				el:'#app'
+				el: '#app',
+				data: {
+					data: 'I am xuefeiCheng',
+					firstName: 'xuefei',
+					lastName: 'Cheng',
+					fullName: 'xuefei Cheng'
+				},
+				//计算属性
+				//出现的原因： 模板内的表达式是非常便利的，但是它们实际上只用于简单的运算。在模板中放入太多的逻辑会让模板过重且难以维护。
+				//在这个地方，模板不再简单和清晰。你必须看一段时间才能意识到，这里是想要显示变量 message 的翻转字符串。当你想要在模板中多次引用此处的翻转字符串时，就会更加难以处理。
+				//这就是对于任何复杂逻辑，你都应当使用计算属性的原因。
+				/*你可以像绑定普通属性一样在模板中绑定计算属性。
+				 * Vue 知道 vm.reversedMessage 依赖于 vm.message，因此当 vm.message 发生改变时，所有依赖于 vm.reversedMessage 的绑定也会更新。
+				 * 而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 函数是没有连带影响 (side effect)，这使得它易于测试和推理。*/
+				computed: {
+					reservedData: function() {
+						// a computed getter
+						/*这里我们声明了一个计算属性 reversedMessage。我们提供的函数将用作属性 vm.reversedMessage 的 getter 函数：*/
+						return this.data.split('').reverse().join('')
+					},
+					getfullName: function() {
+						return this.firstName + " " + this.lastName
+					},
+					test1:{
+						/*计算属性默认只有 getter ，不过在需要时你也可以提供一个 setter ：*/
+						//getter
+						get:function(){
+							return this.firstName + " " + this.lastName
+						},
+						//setter
+						//更改 app.test 触发该事件
+						set:function(newValue){
+							alert("你的根实例发生变化，重新渲染开始");
+							return this.firstName + " " + this.lastName
+						}
+					}
+				},
+				//看过 计算属性的demo之后，会很容易发现，它和methods是很相似的，实现的效果也是一样的，那他们之间的区别是什么呢
+				//计算属性 computed会利用缓存，在根实例中的data不变化时，相应的data的计算属性不会更新，所以多次访问会直接调用之前的缓存，不会一直请求
+				methods: {
+					/*相比之下，每当触发重新渲染时，method 调用方式将总是再次执行函数。*/
+					reservedData1: function() {
+						return this.data.split('').reverse().join('')
+					}
+				},
+				//用于监听  当data中的属性变更后，调用
+				//相比较 计算属性 方法，这个代码太繁琐了
+				watch: {
+					firstName: function(val) {
+						this.fullName = val + ', ' + this.lastName
+					},
+					lastName: function(val) {
+						this.fullName = this.firstName + ' ' + val
+					}
+				}
 			});
 		</script>
 	</body>
+
 </html>
