@@ -122,3 +122,10 @@ git config --global credential.helper store
 ☞这一步会在用户目录下生成文件.git-credential记录用户名密码的信息.
 ☞ git config --global 命令实际上在操作用户目录下的.gitconfig文件, 我们cat一下此文件(cat .gitconfig)
 push一次就好了
+
+关于 css属性 特殊前缀
+特殊前缀指的就是不同浏览器的标识 例如：（css3）
+-moz     Firefox浏览器
+-webkit Chrome、Safari
+-ms IE浏览器
+-o Opera
