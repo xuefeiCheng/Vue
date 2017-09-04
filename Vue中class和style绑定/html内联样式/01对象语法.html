@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>html内联样式--对象语法</title>
-		<script type="text/javascript" src="../../js/vue.js" ></script>
+		<script type="text/javascript" src="../../js/vue.js"></script>
 		<link rel="stylesheet" href="../../css/main.css" />
 	</head>
+
 	<body>
 		<div class="box" id="app">
 			<p>
@@ -13,19 +15,29 @@
 			</p>
 			<p :style="{color:colorA,fontSize:fontA+'px'}">绑定数据中的属性，组织成对象</p>
 			<p :style="styleObj">直接绑定数据中的对象</p>
+			<p :style="styleObject">结合 返回对象 的计算属性使用</p>
 		</div>
 		<script>
 			new Vue({
-				el:'#app',
-				data:{
-					colorA:'#0078A8',
-					fontA:20,
-					styleObj:{
-						color:'#0055FF',
-						fontSize:'18px'
+				el: '#app',
+				data: {
+					colorA: '#0078A8',
+					fontA: 20,
+					styleObj: {
+						color: '#0055FF',
+						fontSize: '18px'
+					}
+				},
+				computed: {
+					styleObject: function() {
+						return {
+							color: '#0055FF',
+							fontSize: '23px'
+						}
 					}
 				}
 			})
 		</script>
 	</body>
+
 </html>
