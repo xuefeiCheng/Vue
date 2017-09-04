@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>html全局样式--用在组件上</title>
+		<script src="../../js/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/main.css" />
+	</head>
+
+	<body>
+		<div class="box" id="app">
+			<todo class="border" :class='fontA'></todo>
+		</div>
+		<script>
+			//注册组件
+			Vue.component('todo',{
+				template:"<p class='color-1'>我的自定义组件</p>"
+			})
+			new Vue({
+				el: '#app',
+				data: {
+					colorA:'color-1',
+					fontA:'font-1'
+				}
+			})
+			
+		</script>
+	</body>
+
+</html>
