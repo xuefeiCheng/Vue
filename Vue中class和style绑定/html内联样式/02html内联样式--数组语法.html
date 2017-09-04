@@ -8,13 +8,32 @@
 	</head>
 	<body>
 		<div class="box" id="app">
-			
+			<p :style="[{color:colorA},{font:fontA}]">数组语法</p>
+			<p :style="{transform:trans}">自动添加前缀</p>
+			<p>IE中</p>
+			<img src="../../imgs/自动添加前缀.png" :class="{'imgClass-baner':true}"/>
+			<p>chrome中</p>
+			<img src="../../imgs/自动添加前缀1.png" :class="{imgClass:true}"/>
 		</div>
 		<script>
 			new Vue({
-				el:'#app',
-				data:{
-					
+				el: '#app',
+				data: {
+					colorA: '#ccc',
+					fontA: '20px',
+					styleObj: {
+						color: '#0055FF',
+						fontSize: '18px'
+					}
+					,trans:"rotate(7deg)"
+				},
+				computed: {
+					styleObject: function() {
+						return {
+							color: '#0055FF',
+							fontSize: '23px'
+						}
+					}
 				}
 			})
 		</script>
