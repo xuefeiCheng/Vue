@@ -14,12 +14,19 @@
 			<img src="../../imgs/自动添加前缀.png" :class="{'imgClass-baner':true}"/>
 			<p>chrome中</p>
 			<img src="../../imgs/自动添加前缀1.png" :class="{imgClass:true}"/>
+			<p>
+				从 2.3.0 起你可以为 style 绑定中的属性提供一个包含多个值的数组，常用于提供多个带前缀的值，例如
+			</p>
+			<div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] ,color:colorA}">弹性盒模型（多重值）</div>
+			<p>
+				这会渲染数组中最后一个被浏览器支持的值。在这个例子中，如果浏览器支持不带浏览器前缀的 flexbox，那么渲染结果会是 display: flex。
+			</p>
 		</div>
 		<script>
 			new Vue({
 				el: '#app',
 				data: {
-					colorA: '#ccc',
+					colorA: '#0078A8',
 					fontA: '20px',
 					styleObj: {
 						color: '#0055FF',
