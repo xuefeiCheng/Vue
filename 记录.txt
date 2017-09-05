@@ -129,3 +129,5 @@ push一次就好了
 -webkit Chrome、Safari
 -ms IE浏览器
 -o Opera
+
+//add a bio 添加一个个人简历/签名
