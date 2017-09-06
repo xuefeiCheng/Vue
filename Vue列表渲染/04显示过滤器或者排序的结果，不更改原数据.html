@@ -21,12 +21,33 @@
 			<span v-for="n in getArray(numArray)">{{n}} </span>
 			<p>### 一段取值范围的 v-for</p>
 			<span v-for="n in 10">{{n}} </span>
+			<p>### v-for on a template</p>
+			<!--看语义，清净吧，谁包裹谁，现在是 ui和li之间作为一部分-->
+				<template v-for="oo in obj" >
+					<ul>
+					<li>{{oo.name}}</li>
+					<li>{{oo.age}}</li>
+					</ul>
+				</template>
+			
 		</div>
 		<script>
 			var vm = new Vue({
 				el:'#app',
 				data:{
 					numArray:[1,2,3,4,5,6,7,8,9,0]
+					,obj:[{
+						'name':'xuefeiCheng',
+						'age':'22'
+					}
+					,{
+						'name':'xuefeiCheng',
+						'age':'16'
+					}
+					,{
+						'name':'xuefeiCheng',
+						'age':'12'
+					}]
 				}
 				,computed:{
 					con1:function(){
