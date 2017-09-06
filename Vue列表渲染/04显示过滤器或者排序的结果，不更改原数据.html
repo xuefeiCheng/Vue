@@ -19,6 +19,8 @@
 				###在计算属性不适用的情况下 (例如，在嵌套 v-for 循环中) 你可以使用一个 method 方法：
 			</p>
 			<span v-for="n in getArray(numArray)">{{n}} </span>
+			<p>### 一段取值范围的 v-for</p>
+			<span v-for="n in 10">{{n}} </span>
 		</div>
 		<script>
 			var vm = new Vue({
