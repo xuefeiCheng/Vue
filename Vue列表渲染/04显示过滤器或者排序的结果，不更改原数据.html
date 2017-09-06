@@ -29,7 +29,21 @@
 					<li>{{oo.age}}</li>
 					</ul>
 				</template>
-			
+			<p>### v-for with v-if</p>
+			<p>
+				当这两个指令处于同一个节点的时候，是有优先级的，v-for的优先级高于v-if，也就是说，会先遍历加载所有的数据，之后，再每一个块里面进行v-if判断
+			</p>
+			<p>处于同一节点，只会展示age>15的数据</p>
+			<ul>
+				<li v-for="data in obj" v-if="data.age>15">{{data.name}}:{{data.age}}</li>
+			</ul>
+			<p>处于不同节点，灵活运用，根据业务逻辑</p>
+			<ul v-if="obj.length >2">
+  				<li v-for="todo in obj">
+  					{{ todo.name }}:{{todo.age}}
+  				</li>
+			</ul>
+			<p v-else>No todos left!</p>
 		</div>
 		<script>
 			var vm = new Vue({
