@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>一个组件的v-for</title>
+		<script src="../js/vue.js"></script>
+		<link rel="stylesheet" href="../css/main.css" />
+	</head>
+
+	<body>
+		<div class="box" id="qpp">
+			<p :class="{'color-1':true}">2.2.0+ 的版本里，当在组件中使用 v-for 时，key 现在是必须的。</p>
+			<my-component v-for="item in items" v-bind:todo="item" :key="item.id"></my-component>
+			<p>下面是一个简单的 todo list 完整的例子：</p>
+			<div :class="{'bgc-1':true}">
+				<input v-model="newTodoText" v-on:keyup.enter="addNewTodo" placeholder="Add a todo">
+				<ul>
+					<li is="todo-item" v-for="(todo, index) in todos" v-bind:key="todo.id" v-bind:title="todo.title" v-on:remove="todos.splice(index, 1)"></li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// 定义名为 todo-item 的新组建
+			Vue.component('my-component', {
+				props: ['todo'],
+				template: '<li>{{todo.name}}</li>'
+			});
+			Vue.component('todo-item', {
+				template: '\
+				<li>\
+				{{ title }}\
+				<button v-on:click="$emit(\'remove\')">X</button>\
+				</li>\
+				',
+				props: ['title']
+			})
+			var vm = new Vue({
+				el: '#qpp',
+				data: {
+					items: [{
+							'name': 'xuefeiCheng'
+						},
+						{
+							'name': 'yanyanChen'
+						}, {
+							'name': 'xiufenChen'
+						}
+					],
+					newTodoText: '',
+					todos: [{
+							id: 1,
+							title: 'Do the dishes',
+						},
+						{
+							id: 2,
+							title: 'Take out the trash',
+						},
+						{
+							id: 3,
+							title: 'Mow the lawn'
+						}
+					],
+					nextTodoId: 4
+				}
+				,methods: {
+					addNewTodo: function() {
+						this.todos.push({
+							id: this.nextTodoId++,
+							title: this.newTodoText
+						})
+						this.newTodoText = ''
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>
