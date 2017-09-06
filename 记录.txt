@@ -131,3 +131,13 @@ push一次就好了
 -o Opera
 
 //add a bio 添加一个个人简历/签名
+
+数组变异方法（更新数组）：
+push()
+pop()
+shift()
+unshift()
+splice()
+sort()
+reverse()
+数组重塑方法（原数组不变，返回一个新数组）：filter(), concat() 和 slice()
