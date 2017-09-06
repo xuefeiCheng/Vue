@@ -7,11 +7,36 @@
 		<link rel="stylesheet" href="../css/main.css" />
 	</head>
 	<body>
-		<div class="box" id="app"></div>
+		<div class="box" id="app">
+			<p>### v-for渲染数组数据</p>
+			<ol>
+				<li v-for="ar in arr" :class="{'color-1':true}">{{ar}}</li>
+			</ol>
+			<p>### v-for渲染包含对象的数组</p>
+			<ul>
+				<li v-for="a in arrObj" :class="{'color-2':true}">{{a.name}}</li>
+			</ul>
+			<p>### v-for可选的第二参数作为为当前项的索引</p>
+			<ul>
+				<li v-for="(item,index) in arrObj" :class="{'color-1':true}">{{index}}:{{item.name}}</li>
+			</ul>
+			<p>### 使用of代替 in作为分隔符</p>
+			<ul>
+				<li v-for="ite of arrObj" :class="{'color-4':true}">{{ite.name}}</li>
+			</ul>
+		</div>
 		<script>
 			//构造器 构造一个根实例
 			var vm = new Vue({
 				el:'#app'
+				,data:{
+					arr:["元素1","元素2","元素3"]
+					,arrObj:[
+						{'name':'xuefeicheng'}
+						,{'name':'yanyanchen'}
+						,{'name':'xiufenchen'}
+					]
+				}
 			})
 		</script>
 	</body>
