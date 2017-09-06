@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>显示过滤/排序结果，不更改原数据</title>
+		<script src="../js/vue.js"></script>
+		<link rel="stylesheet" href="../css/main.css" />
+	</head>
+	<body>
+		<div class="box" id="app">
+			<p>### 原数据</p>
+			<span v-for="num in numArray">{{num}} </span>
+			<p>### 利用过滤器展示能被2整除的数据</p>
+			<p>__使用计算属性展示</p>
+			<span>{{con1}}</span>
+			<p>__使用v-for 结合 计算属性展示</p>
+			<span v-for="con of con1">{{con}} </span>
+			<p>
+				###在计算属性不适用的情况下 (例如，在嵌套 v-for 循环中) 你可以使用一个 method 方法：
+			</p>
+			<span v-for="n in getArray(numArray)">{{n}} </span>
+		</div>
+		<script>
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					numArray:[1,2,3,4,5,6,7,8,9,0]
+				}
+				,computed:{
+					con1:function(){
+						 return this.numArray.filter(function (number) {
+						 	return number % 2 === 0
+						 })
+					}
+				}
+				,methods:{
+					getArray:function(n){
+						return this.numArray.filter(function (number) {
+						 	return number % 2 === 0
+						 })
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
