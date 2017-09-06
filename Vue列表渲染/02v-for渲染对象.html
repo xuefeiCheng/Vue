@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>一个对象的v-for</title>
+		<script type="text/javascript" src="../js/vue.js" ></script>
+		<link rel="stylesheet" href="../css/main.css" />
+	</head>
+	<body>
+		<div class="box" id="app">
+			<div v-for="o in obj">
+				{{o}}
+			</div>
+			<p>### 你也可以提供第二个的参数为键名</p>
+			<div v-for="(o , key) in obj">
+				{{key}}:{{o}}
+			</div>
+			<p>### 第三个参数为索引</p>
+			<div v-for="(o ,key ,index) in obj">
+				{{index}}-{{key}}:{{o}}
+			</div>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el:'#app',
+				data:{
+					obj:{
+						'name':'xuefeiCheng',
+						'age':"22"
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
