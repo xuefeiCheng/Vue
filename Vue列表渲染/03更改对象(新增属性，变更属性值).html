@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>对象属性和属性值更改</title>
+		<script type="text/javascript" src="../js/vue.js" ></script>
+		<link rel="stylesheet" href="../css/main.css" />
+	</head>
+	<body>
+		<div class="box" id="app">
+			<button onclick="addKey()">你可以添加一个新的 age 属性到嵌套的 obj 对象</button>
+			<button @click="addKey">你可以添加一个新的 age 属性到嵌套的 obj 对象</button>
+			<div v-for="(value,key) in obj" :class="{'color-1':true}">
+				{{key}}:{{value}}
+			</div>
+			<p>
+				有时你可能需要为已有对象赋予多个新属性，比如使用 Object.assign() 或 _.extend()。在这种情况下，你应该用两个对象的属性创建一个新的对象。所以，如果你想添加新的响应式属性
+			</p>
+			<button @click="add">为已有对象赋予多个新属性</button>
+		</div>
+		<script>
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					obj:{
+						'name':'xuefeiCheng'
+					}
+				}
+				,methods:{
+					addKey:function(){
+						this.$set(this.obj, 'age', 27)
+					}
+					,add:function(){
+						this.obj = Object.assign({}, this.obj, {
+							age: 17,
+							favoriteColor: 'Vue Green'
+							})
+					}
+				}
+			})
+			function addKey(){
+				Vue.set(vm.obj,'age','22');
+			}
+		</script>
+	</body>
+</html>
