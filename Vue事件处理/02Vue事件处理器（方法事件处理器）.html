@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>事件处理器之方法处理器</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+
+	<body>
+		<div class="box" id="app">
+			<p>事件处理器--方法处理器</p>
+			<p>事件调用可以直接在指令时编写一些简单的js代码</p>
+			<button v-on:click="{{count =count+1}}" style="display: inline-block;">点击我吧</button>
+			<button v-on:click="{{count =0}}" style="display: inline-block;">重置次数</button>
+			<span>被点击了{{count}}次哦</span>
+			<p>此处有一个小错误哦 count+=1，报错提醒，但是功能正常使用哦，换成 count= count+1 也是这个问题哦</p>
+			<img src="../imgs/error.png" />
+			<p>许多事件处理的逻辑都很复杂，所以直接把 JavaScript 代码写在 v-on 指令中是不可行的。因此 v-on 可以接收一个定义的方法来调用。</p>
+			<button v-on:click="greet">Greet</button>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					count: 0,
+					name:'Vue.js'
+				},
+				methods: {
+					greet: function(event) {
+						// `this` 在方法里指当前 Vue 实例
+						alert('Hello ' + this.name + '!')
+						// `event` 是原生 DOM 事件
+						if(event) {
+							alert("点击的元素是一个："+event.target.tagName)
+						}
+					}
+				}
+			})
+			//可以在javascript其他地方直接调用
+			//vm.greet() // => 'Hello Vue.js!'
+		</script>
+	</body>
+
+</html>
