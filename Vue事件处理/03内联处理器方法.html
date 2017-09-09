@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue事件处理器（内联处理器方法）</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+
+	<body>
+		<div class="box" id="app">
+			<p>除了直接绑定到一个方法，也可以用内联 JavaScript 语句</p>
+			<button v-on:click="say('hi')">Say hi</button>
+			<button v-on:click="say('what')">Say what</button>
+			<p>有时也需要在内联语句处理器中访问原生 DOM 事件。可以用特殊变量 $event 把它传入方法</p>
+			<button v-on:click="warn('warning.....',$event)">submit</button>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: '#app',
+				data: {
+
+				},
+				methods: {
+					say: function(msg) {
+						alert(msg);
+					},
+					warn: function(msg, event) {
+						alert(msg);
+						// 现在我们可以访问原生事件对象
+						//取消事件的默认动作。
+						if(event) event.preventDefault();
+						//返回其事件监听器触发该事件的元素。
+						if(event) alert('查看控制台输出，触发该事件的元素');console.log(event.currentTarget);
+						
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>
