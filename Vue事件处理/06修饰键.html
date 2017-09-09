@@ -32,6 +32,14 @@
 			<input @keyup.alt.67="clear" placeholder="输入文字后，尝试一下 Alt + C">
 			<!-- Ctrl + Click -->
 			<div @click.ctrl="doSomething">Do something</div>
+			<p>2.1.0 新增 鼠标按钮修饰符 --这些修饰符会限制处理程序监听特定的滑鼠按键。</p>
+			<ul>
+				<li>.left</li>
+				<li>.right</li>
+				<li>.middle</li>
+			</ul>
+			<p>demo</p>
+			<input @click.left="mouse('left')" placeholder="尝试一下点击鼠标左键"/>
 		</div>
 		<script type="text/javascript">
 			var vm = new Vue({
@@ -45,6 +53,19 @@
 					}
 					,doSomething:function(){
 						alert("触发了ctrl按键+click事件");
+					}
+					,mouse:function(type){
+						switch(type){
+							case "middle":
+							alert("触发了鼠标滚轮");
+							break;
+							case "left":
+							alert("触发了鼠标左键");
+							break;
+							case "right":
+							alert("触发了鼠标右键");
+							break;
+						}
 					}
 				}
 			})
