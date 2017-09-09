@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>键值修饰符</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+
+	<body>
+		<div class="box" id="app">
+			<p>在监听键盘事件时，我们经常需要监测常见的键值。 Vue 允许为 v-on 在监听键盘事件时添加关键修饰符</p>
+			<input v-on:keyup.13="submit" placeholder="enter按键触发">
+			<p>
+				记住所有的 keyCode 比较困难，所以 Vue 为最常用的按键提供了别名：
+			</p>
+			<ul>
+				<li>.enter</li>
+				<li>.tab</li>
+				<li>.delete</li>
+				<li>.esc</li>
+				<li>.space</li>
+				<li>.up</li>
+				<li>.down</li>
+				<li>.left</li>
+				<li>.right</li>
+			</ul>
+			<p>
+				可以通过全局 config.keyCodes 对象自定义键值修饰符别名： 可以使用 v-on:keyup.f1 --> Vue.config.keyCodes.f1 = 112
+			</p>
+			<p>demo</p>
+			<ul>
+				<li><input v-on:keyup.enter="submit" placeholder="enter按键触发"></li>
+				<li><input v-on:keyup.tab="submit" placeholder="tab按键触发"></li>
+				<li><input v-on:keyup.delete="submit" placeholder="delete按键触发"></li>
+				<li><input v-on:keyup.esc="submit" placeholder="esc按键触发"></li>
+				<li><input v-on:keyup.space="submit" placeholder="space按键触发"></li>
+				<li><input v-on:keyup.up="submit" placeholder="up按键触发"></li>
+				<li><input v-on:keyup.down="submit" placeholder="down按键触发"></li>
+				<li><input v-on:keyup.left="submit" placeholder="left按键触发"></li>
+				<li><input v-on:keyup.right="submit" placeholder="right按键触发"></li>
+				<li><input v-on:keyup.F1="submit" placeholder="F1按键触发"></li>
+			</ul>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: '#app',
+				data: {
+
+				},
+				methods: {
+					submit: function() {
+						alert("按键响应");
+					}
+				}
+			})
+			Vue.config.keyCodes.F1 = 112;
+		</script>
+	</body>
+
+</html>
