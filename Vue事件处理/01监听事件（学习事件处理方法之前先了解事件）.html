@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>监听事件</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<script type="text/javascript" src="../js/jquery.js" ></script>
+		<script type="text/javascript" src="../js/vue.js" ></script>
+	</head>
+	<body>
+		<div class="box" id="app">
+			<p>学习Vue的事件处理器之前，先了解Vue的监听事件</p>
+			<p>监听事件 v-on指令</p>
+			<span>姓名:</span><input type="text" placeholder="请输入内容" value="" v-on:change="changeVule" id="nameVule" />
+			<span>姓名输出：</span><span id="name">{{name}}</span>
+		</div>
+		<script>
+			//聚焦
+			$(function(){
+				$("#nameVule").focus();
+			});
+			
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					name:$("#nameVule").val()
+				},
+				methods:{
+					changeVule:function(){
+						vm.name = $("#nameVule").val();
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
