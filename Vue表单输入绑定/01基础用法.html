@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>基础用法</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+
+	</head>
+
+	<body>
+		<div class="box" id="app">
+			<p>
+				你可以用 v-model 指令在表单控件元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。 尽管有些神奇，但 v-model 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。
+			</p>
+			<p :class="{'color-1':true}">
+				v-model 会忽略所有表单元素的 value、checked、selected 特性的初始值。 因为它会选择 Vue 实例数据来作为具体的值。你应该通过 JavaScript 在组件的 data 选项中声明初始值。
+			</p>
+			<p>
+				对于要求 IME (如中文、 日语、 韩语等) (IME意为’输入法’)的语言，你会发现v-model不会在 ime 输入中得到更新。 如果你也想实现更新，请使用 input事件
+			</p>
+			<p>### 文本</p>
+			<input type="text" value="" v-model="msg" placeholder="Please input your name" />
+			<span>Your name is :{{msg}}</span>
+			<textarea name="" rows="" cols="" placeholder="This will show your name">{{msg}}</textarea>
+			<p>### 多行文本</p>
+			<p>文本域中输入的是：{{text}}</p>
+			<textarea name="" rows="" cols="" v-model="text"></textarea>
+			<p>### 复选框</p>
+			<p>## 单个勾选框，更改逻辑值</p>
+			<input type="checkbox" id="checkbox" v-model="checked">
+			<label for="checkbox">{{ checked }}</label>
+			<p>## 多个勾选框</p>
+			<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+			<label for="jack">Jack</label>
+			<input type="checkbox" id="john" value="John" v-model="checkedNames">
+			<label for="john">John</label>
+			<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+			<label for="mike">Mike</label>
+			<br>
+			<span>Checked names: {{ checkedNames }}</span>
+			<p>### 单选按钮</p>
+			<input type="radio" id="one" value="One" v-model="picked">
+			<label for="one">One</label>
+			<br>
+			<input type="radio" id="two" value="Two" v-model="picked">
+			<label for="two">Two</label>
+			<br>
+			<span>Picked: {{ picked }}</span>
+			<p>### 选择列表select</p>
+			<p>## 单选列表</p>
+			<p :class="{'color-1':true}">
+				--option默认第一个可以变为禁用项，默认第一个为 一个空值的option是因为ios系统中，若未选择，直接默认第一个option时，不触发onchange事件，所以传的值就是空值了，为解决这一bug，手动添加了一个option
+			</p>
+			<select v-model="selected">
+				<option disabled value="">请选择</option>
+				<option>A</option>
+				<option>B</option>
+				<option>C</option>
+			</select>
+			<span>Selected: {{ selected }}</span>
+			<p>## 多选列表</p>
+			<p :class="{'color-1':true}">
+				此处是在select标签处添加了一个 multiple ，select选择框全部展示出来，但是 并没有 实现多选啊
+			</p>
+			<select v-model="selectedmore" multiple>
+				<option>A</option>
+				<option>B</option>
+				<option>C</option>
+			</select>
+			<br>
+			<span>Selected: {{ selectedmore }}</span>
+			<p>## 动态选项</p>
+			<select v-model="selectedmove">
+				<option disabled value="">请选择</option>
+				<option v-for="option in options" v-bind:value="option.value">
+					{{ option.text }}
+				</option>
+			</select>
+			<span>Selected: {{ selectedmove }}</span>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					'msg': '',
+					'text': '',
+					'checked': true,
+					checkedNames: [],
+					picked: '',
+					selected: '',
+					selectedmore: []
+					,selectedmove:''
+					,options:[{text:'xuefeiCheng',value:1},{text:'yanyanChen',value:2},{text:'xiufenChen',value:3}]
+				}
+			})
+		</script>
+	</body>
+
+</html>
