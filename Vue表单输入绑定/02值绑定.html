@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>值绑定</title>
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<link rel="stylesheet" href="../css/main.css" />
+	</head>
+
+	<body>
+		<div class="box" id="app">
+			<input type="radio" name="" id="" value="aa" v-model="picked" />展示的是value：{{picked}}</br>
+			<input type="checkbox" name="" id="" value="" v-model="check" />展示的是逻辑值：{{check}}</br>
+			<input type="checkbox" name="" id="" v-bind:true-value='a' v-bind:false-value='b' v-model="checkvalue" />展示的是定义的value：{{checkvalue}}</br>
+			<select v-model="selectedvalue">
+				<option value="abc">ABC</option>
+				<option value="abcd">ABCd</option>
+			</select>
+			展示的是value值：{{selectedvalue}}</br>
+			<select v-model="selected">
+				<option>ABC</option>
+				<option>ABCd</option>
+			</select>
+			展示的是文本值：{{selected}}
+			<p>使用指定绑定 value值</p>
+			<p>## 单选按钮</p>
+			<input type="radio" v-model="pick" v-bind:value="a">{{pick}}
+			<p>## 选择列表的选项</p>
+			<select v-model="selectedObj">
+				<!-- 内联对象字面量 -->
+				<option v-bind:value="{ number: 123 }">123</option>
+			</select>
+			{{selectedObj}}
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					a: 'halou',
+					b: "nihao",
+					picked: '',
+					pick: '',
+					check: '',
+					checkvalue: '',
+					selected: '',
+					selectedvalue: ""
+					,selectedObj:''
+				}
+			})
+		</script>
+	</body>
+
+</html>
