@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>什么是组件</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+
+	<body>
+		<div class="box" id="app">
+			<p>组件时vue.js最轻大的功能之一。组件可以拓展html模板，封装可复用性的代码。</p>
+			<p>使用组件，首先要注册组件，之后就可以以标签的形式，在父模板中使用。组件可以使全局的，也可以不是</p>
+			<p>### 使用全局组件 todo，用来加载一组列表</p>
+			<todo></todo>
+			<p>### 使用局部主次组件 tochild，用来加载一组列表</p>
+			<tochild></tochild>
+			<p>### DOM模板解析说明</p>
+			<p>
+				当使用 DOM 作为模板时 (例如，将 el 选项挂载到一个已存在的元素上)，你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 后才能获取模板内容。尤其像这些元素 ul，ol，table，select 限制了能被它包裹的元素，而一些像 option 这样的元素只能出现在某些其它元素内部。
+			</p>
+			<p>好像并没有报错啊</p>
+			<table>
+				<tochild></tochild>
+			</table>
+			<p>使用特殊属性is</p>
+			<table>
+				<tr is="tochild"></tr>
+			</table>
+			<p>### 在组件中data必须是函数</p>
+
+		</div>
+		<div id="example-2" class="box">
+			<!---->
+			<p>组件demo</p>
+			<simple-counter></simple-counter>
+			<simple-counter></simple-counter>
+			<simple-counter></simple-counter>
+			<p>返回全新的data对象</p>
+			<simple-counter2></simple-counter2>
+			<simple-counter2></simple-counter2>
+			<simple-counter2></simple-counter2>
+		</div>
+		<div id="example" class="box">
+			<p>###  组合组件</p>
+			
+		</div>
+		<script>
+			var Child = {
+				template: '<ol><li>项目1</li><li>项目2</li><li>项目3</li></ol>'
+			}
+			Vue.component('todo', {
+				template: '<ul><li>项目1</li><li>项目2</li><li>项目3</li></ul>'
+			})
+			//data 在组件中 必须是一个函数
+			//如果你像下面那么做了，那么 Vue 会停止，并在控制台发出警告，告诉你在组件中 data 必须是一个函数。
+			Vue.component('my', {
+				template: '<span>{{ message }}</span>',
+				data: {
+					message: 'hello'
+				}
+			})
+			var vm = new Vue({
+				el: '#app',
+				data: {
+
+				},
+				components: {
+					'tochild': Child
+				}
+			})
+
+			var data = {
+				counter: 0
+			}
+			Vue.component('simple-counter', {
+				template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+				// 技术上 data 的确是一个函数了，因此 Vue 不会警告，
+				// 但是我们返回给每个组件的实例却引用了同一个 data 对象
+				data: function() {
+					return data
+				}
+			})
+				Vue.component('simple-counter2', {
+				template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+				// 技术上 data 的确是一个函数了，因此 Vue 不会警告，
+				// 但是我们返回给每个组件的实例却引用了同一个 data 对象
+				data: function() {
+					return {counter: 0}
+				}
+			})
+			new Vue({
+				el: '#example-2'
+			})
+		</script>
+	</body>
+
+</html>
