@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>组件props</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+
+	<body>
+		<div class="box" id="app">
+			<p>### 使用props传递数据</p>
+			<p>使用组件，没有办法直接在组件中的模板使用组件的数据，需要使用props进行传递，并且在组件调用的时候需要显式地用 props 选项声明它期待获得的数据</p>
+			<p>
+				<parent message="hello"></parent>
+			</p>
+			<p>### 动态props</p>
+			<p>
+				<input v-model="inputMsg" />
+			</p>
+			<p>
+				<!--直接使用 实例中的 字段，需要使用 v-bind指令，才可以哦-->
+				<child v-bind:message="inputMsg"></child>
+			</p>
+			<p>
+				<todo-item v-for="item in sites" v-bind:todo="item"></todo-item>
+			</p>
+		</div>
+		<script>
+			Vue.component('parent', {
+				// 声明 props
+				props: ['message'],
+				// 就像 data 一样，prop 可以用在模板内
+				// 同样也可以在 vm 实例中像“this.message”这样使用
+				template: '<span>{{ message }}</span>'
+			})
+			Vue.component('child', {
+				// 声明 props
+				props: ['message'],
+				// 就像 data 一样，prop 可以用在模板内
+				// 同样也可以在 vm 实例中像“this.message”这样使用
+				template: '<span>{{ message }}</span>'
+			})
+			Vue.component('todo-item', {
+				props: ['todo'],
+				template: '<li>{{ todo.text }}</li>'
+			})
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					'inputMsg': 'hello vue.js',
+					sites: [{
+							text: 'Runoob'
+						},
+						{
+							text: 'Google'
+						},
+						{
+							text: 'Taobao'
+						}
+					]
+				}
+			})
+		</script>
+	</body>
+
+</html>
