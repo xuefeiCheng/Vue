@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>字面量语法 vs 动态语法</title>
 		<link rel="stylesheet" href="../css/main.css" />
-		<script type="text/javascript" src="../js/jquery.js" ></script>
-		<script type="text/javascript" src="../js/vue.js" ></script>
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
 	</head>
+
 	<body>
 		<div class="box" id="app">
 			<!-- 传递了一个字符串 "1" -->
@@ -16,13 +18,19 @@
 		</div>
 		<script>
 			//注册 组件
-			Vue.component('parameter',{
-				props:['prop-name'],
-				template:"<span>{{propName}}</span>"
+			Vue.component('parameter', {
+				props: ['prop-name'],
+				template: "<span>{{counter}}</span>",
+				data: function() {
+					return {
+						counter: this.propName+1
+					}
+				}
 			})
 			var vm = new Vue({
-				el:'#app'
+				el: '#app'
 			})
 		</script>
 	</body>
+
 </html>
