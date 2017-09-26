@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>单向数据流</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<script type="text/javascript" src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+
+	<body>
+		<div class="box" id="app">
+			<p>说明部分</p>
+			<p>
+				使用prop作为中间桥梁用于传递数据，给组件使用。prop是单向绑定的，只负责传递数据给子组件，并不会反向。 这样设计的目的是：为防止子组件无意修改父组件的状态，这样会让应用的数据流难以理解。 此外，父组件数据更新时，子组件的数据会保持最新状态。如果在子组件内部更改了prop，vue会在控制台给予警告。
+			</p>
+			<p>
+				但是我们有充分的动机要更改 子组件的数据啊。。。。
+			</p>
+			<p>
+				<ol>
+					<li>prop 作为初始值传入后，子组件想把它当作局部数据来用；</li>
+					<li>prop 作为初始值传入，由子组件处理成其它数据输出。</li>
+				</ol>
+				对这两种原因，正确的应对方式是：
+			</p>
+			<ol>
+				<li>
+					<p>定义一个局部变量，并用 prop 的值初始化它：</p>
+					<message prop1="hello"></message>
+				</li>
+				<li>
+					<p>定义一个计算属性，处理 prop 的值并返回。</p>
+					<compute size="hElo"></compute>
+				</li>
+			</ol>
+		</div>
+		<script type="text/javascript">
+			//注册 组件
+			Vue.component('message', {
+				props: ['prop1'],
+				template: "<span>{{newmessage}}</span>",
+				data: function() {
+					return {
+						newmessage: this.prop1
+					}
+				}
+			})
+			Vue.component('compute', {
+				props: ['size'],
+				template: "<span>{{normalizedSize}}</span>",
+				computed: {
+					normalizedSize: function() {
+						// 删除 字符串 开始 结束 空格   转换成小写字符
+						return this.size.trim().toLowerCase()
+					}
+				}
+			})
+			var vm = new Vue({
+				el: '#app'
+			})
+		</script>
+	</body>
+
+</html>
