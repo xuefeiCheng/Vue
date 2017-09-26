@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>camelCase vs. kebab-case</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<script src="../js/jquery.js"></script>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div class="box" id="app">
+			<p v-bind:class="colorA">
+				何为驼峰式命名法？
+			</p>
+			<p>
+				驼峰式命名法是一种程序命名规范，是一种惯例，并是不强制，只是为了增加识别性和可读性。
+			</p>
+			<p :class="colorA">
+				格式？
+			</p>
+			<p>
+				单词之间不以空格、连接号或者底线连结（例如不应写成：camel case、camel-case或camel_case形式）。共有两种格式：
+				<ol>
+					<li>
+						<span>小驼峰式命名法（lower camel case）：</span>
+						<p>
+							第一个单字以小写字母开始，第二个单字的首字母大写。例如：firstName、lastName。
+						</p>
+					</li>
+					<li>
+						<span>大驼峰式命名法（upper camel case）：</span>
+						<p>
+							每一个单字的首字母都采用大写字母，例如：FirstName、LastName、CamelCase，也被称为 Pascal 命名法。
+						</p>
+					</li>
+				</ol>
+			</p>
+			<p :class="colorA">camelCase vs. kebab-case</p>
+			<p>
+				HTML 特性是不区分大小写的。所以，当使用的不是字符串模板，camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (短横线隔开式) 命名
+			</p>
+			<com my-msg="hello,此处必须是 短横线隔开式命名，否则会转换成小写" :class="colorA"></com><br />
+			<dom myMsg="此处是大写，但是均被识别成小写" :class="colorA"></dom><br />
+			<div class="box">
+				<img src="../imgs/组件命名error.png"/>
+			</div>
+		</div>
+		<script>
+			//注册组件
+			Vue.component('com',{
+				props:['my-msg'],
+				//props:['myMsg'],
+				//props中传递的数据可以为驼峰式也可以为短横线式，他们在此处是相互转换的
+				template:"<span>{{myMsg}}</span>"
+				/*template:"<span>{{my-msg}}</span>"*/
+				 // 此处有限制，不是字符串模板，此处只能是驼峰命名方式。若为短横线的命名方式，则会报错。如上图
+			})
+			Vue.component('dom',{
+				props:['mymsg'],
+				template:"<span>{{mymsg}}</span>"
+			})
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					colorA:"color-1"
+				}
+			});
+		</script>
+	</body>
+</html>
