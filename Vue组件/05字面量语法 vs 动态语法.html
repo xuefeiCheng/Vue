@@ -20,7 +20,7 @@
 			//注册 组件
 			Vue.component('parameter', {
 				props: ['prop-name'],
-				template: "<span>{{counter}}</span>",
+				template: "<p>通过计算，可以看出，传递的数据类型，是string还是number<br/><span>{{propName}}+1 = {{counter}}</span></p>",
 				data: function() {
 					return {
 						counter: this.propName+1
