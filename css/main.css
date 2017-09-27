@@ -4,7 +4,9 @@ div.box {
 	padding: 10px 20px;
 	background-color: #f6f6f6;
 }
-
+div.box img{
+	width: 100%;
+}
 .border {
 	border-bottom: 2px solid #eee;
 }
