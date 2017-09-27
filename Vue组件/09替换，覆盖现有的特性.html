@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>替换/覆盖现有的特性</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<script type="text/javascript" src="../js/jquery.js" ></script>
+		<script type="text/javascript" src="../js/vue.js" ></script>
+	</head>
+	<body>
+		<div class="box" id="app">
+			<p>
+				一般来说，一个input标签的type属性开始是text，后手动更改成 type='password'，则原来的type属性就会被覆盖掉，
+				但是相对来说 style和class相对比较聪明一些，会直接merge，而不是被替换
+			</p>
+			<p>demo</p>
+			
+		</div>
+		<script>
+			var vm = new Vue({
+				el:'#app'
+			})
+		</script>
+	</body>
+</html>
