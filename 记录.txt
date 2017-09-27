@@ -141,3 +141,10 @@ splice()
 sort()
 reverse()
 数组重塑方法（原数组不变，返回一个新数组）：filter(), concat() 和 slice()
+
+关于 组件中使用v-on实现自定义事件 想说
+使用的是$on 和 $emit监听和触发事件，有点类似于angularjs中的父子controller传递数据。
+使用 $on用于监听事件的发生，例如 v-on:click="sayHello()"语句中，监听当前button的click事件，
+一旦button被click，则触发sayHello方法，执行方法内部操作。
+使用$emit用于触发事件的发生，例如 在sayHello方法中，执行 this.emit("sayGoodbay");
+则，触发的是 v-on:sayGoodbye = "Bay()" 语句，执行 Bay()方法内部操作。
