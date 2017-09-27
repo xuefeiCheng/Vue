@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>给组件绑定原生事件</title>
+		<link rel="stylesheet" href="../../css/main.css" />
+		<script type="text/javascript" src="../../js/jquery.js" ></script>
+		<script type="text/javascript" src="../../js/vue.js" ></script>
+	</head>
+	<body>
+		<div class="box" id="app">
+			<p>大概是这个意思，不怎么懂</p>
+			<p>原生事件 native，增添这个原生事件，任何情况下 点击后都会触发事件</p>
+			<p>相当于直接$element.addEventListener(click, callback);绑定事件</p>
+			<my-component v-on:click.native="doTheThing" :class="{'color-1':true}"></my-component>
+		</div>
+		<script>
+			//注册 组件
+			Vue.component("myComponent",{
+				template:"<span>click Me,SayHello</span>"
+			})
+			var vm = new Vue({
+				el:'#app',
+				methods:{
+					doTheThing:function(){
+						alert("hello vue.js");
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
