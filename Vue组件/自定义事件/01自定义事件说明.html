@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义事件说明</title>
+		<link rel="stylesheet" href="../../css/main.css" />
+		<script src="../../js/jquery.js"></script>
+		<script type="text/javascript" src="../../js/vue.js" ></script>
+	</head>
+	<body>
+		<div class="box" id="app">
+			<p>
+				我们知道，父组件是使用 props 传递数据给子组件，但子组件怎么跟父组件通信呢？这个时候 Vue 的自定义事件系统就派得上用场了。
+			</p>
+		</div>
+		<script type="text/javascript">
+			//注册组件
+			Vue.component('methods',{
+				
+			})
+			var vm = new Vue({
+				el:'#app'
+			})
+		</script>
+	</body>
+</html>
