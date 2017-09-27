@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>.sync 修饰符</title>
+		<link rel="stylesheet" href="../../css/main.css" />
+		<script type="text/javascript" src="../../js/jquery.js" ></script>
+		<script type="text/javascript" src="../../js/vue.js" ></script>
+	</head>
+	<body>
+		<div class="box" id="app">
+			<p>具体运转 看一下 控制台中的elements渲染结果</p>
+			<p>{{val}}</p>
+			<p>当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件</p>
+			<comp :foo.sync="bar"></comp>
+		</div>
+		<script type="text/javascript">
+			Vue.component("comp",{
+				template:"<button v-on:click ='add()'>{{num}}</button>",
+				data:function(){
+					return {
+						num :0
+					}
+				}
+				,methods:{
+					add:function(){
+						this.num += 1;
+						this.$emit('update:foo', vm.val++)
+					}
+				}
+			})
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					val:0
+				},
+				methods:{
+					bar:function(){
+						 this.val += 1;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
