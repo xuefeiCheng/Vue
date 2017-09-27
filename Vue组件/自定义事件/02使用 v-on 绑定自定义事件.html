@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>使用 v-on 绑定自定义事件</title>
+		<link rel="stylesheet" href="../../css/main.css" />
+		<script src="../../js/jquery.js"></script>
+		<script type="text/javascript" src="../../js/vue.js"></script>
+	</head>
+
+	<body>
+		<div class="box" id="counter-event-example">
+
+			<p>{{ total }}</p>
+			<!--$on 监听事件 发生-->
+			<button-counter v-on:increment="incrementTotal"></button-counter>
+			<button-counter v-on:increment="incrementTotal"></button-counter>
+
+		</div>
+		<div class="box">
+			<p>事件走向图</p>
+			<img src="../../imgs/组件自定义事件.jpg" />
+		</div>
+		<script type="text/javascript">
+			Vue.component('button-counter', {
+				template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
+				data: function() {
+					return {
+						counter: 0
+					}
+				},
+				methods: {
+					incrementCounter: function() {
+						this.counter += 1
+						//触发 父组件的事件
+						this.$emit('increment')
+					}
+				},
+			})
+			new Vue({
+				el: '#counter-event-example',
+				data: {
+					total: 0
+				},
+				methods: {
+					incrementTotal: function() {
+						this.total += 1
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>
