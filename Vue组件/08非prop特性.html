@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>非prop特性</title>
+		<link rel="stylesheet" href="../css/main.css" />
+		<script type="text/javascript" src="../js/jquery.js" ></script>
+		<script type="text/javascript" src="../js/vue.js" ></script>
+	</head>
+	<body>
+		<div class="box" id="app">
+			<p v-bind:class="{'color-1':true}">何为 非prop特性?</p>
+			<p>
+				所谓非 prop 特性，就是它可以直接传入组件，而不需要定义相应的 prop。
+			</p>
+			<p>
+				明确给组件定义 props 是传参的推荐方式，但组件的作者并不总能预见到组件被使用的场景。所以，组件可以接收任意传入的特性，这些特性都会被添加到组件的根元素上。
+			</p>
+			<p>
+				例如，第三方组件 bs-date-input，当它要和一个 Bootstrap 插件相互操作时，需要在这个第三方组件的 input 上添加 data-3d-date-picker 特性，这时可以把属性直接添加到组件上 (不需要事先定义 prop)：			
+			</p>
+			<component display="block" v-bind:class="{'color-1':true}"></component>
+			<p>在组件注册时，并没有声明props，但是也可以直接将属性传递</p>
+			<div class="box"><img src="../imgs/非prop特性html.png" alt="" /><hr><span>渲染到html中为：</span><hr><br><img src="../imgs/非prop特性.png" alt="" /></div>
+		</div>
+		<script>
+			//注册 组件
+			Vue.component('component',{
+				template:"<span>hello vue.js</span>"
+			})
+			var vm = new Vue({
+				el:'#app'
+			})
+		</script>
+	</body>
+</html>
