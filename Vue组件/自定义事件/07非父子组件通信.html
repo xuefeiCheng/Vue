@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>非父子组件通信</title>
+		<link rel="stylesheet" href="../../css/main.css" />
+		<script type="text/javascript" src="../../js/vue.js"></script>
+	</head>
+
+	<body>
+		<div class="box" id="todo-app">
+			<p>
+				有时候两个组件也需要通信 (非父子关系)。在简单的场景下，可以使用一个空的 Vue 实例作为中央事件总线：
+			</p>
+			
+				<h1>假期 todo app</h1>
+				<new-todo></new-todo>
+				<todo-list></todo-list>
+			
+		</div>
+		<script type="text/javascript">
+			var eventHub = new Vue({
+				data() {
+					return {
+						todos: ['A', 'B', 'C']
+					}
+				},
+				created: function() {
+					this.$on('add', this.addTodo)
+					this.$on('delete', this.deleteTodo)
+				},
+				beforeDestroy: function() {
+					this.$off('add', this.addTodo)
+					this.$off('delete', this.deleteTodo)
+				},
+				methods: {
+					addTodo: function(newTodo) {
+						this.todos.push(newTodo)
+					},
+					deleteTodo: function(i) {
+						this.todos.splice(i, 1)
+					}
+				}
+			})
+			var newTodo = {
+				template: '<p><input type="text" autofocus v-model="newtodo"/><button @click="add">add</button></p>',
+				data() {
+					return {
+						newtodo: ''
+					}
+				},
+				methods: {
+					add: function() {
+						eventHub.$emit('add', this.newtodo)
+						this.newtodo = ''
+					}
+				}
+			}
+			var todoList = {
+				template: '<ul><li v-for="(item,index) in items">{{item}} \
+				<button @click="rm(index)">X</button></li> \
+				</ul>',
+				data() {
+					return {
+						items: eventHub.todos
+					}
+				},
+				methods: {
+					rm: function(i) {
+						eventHub.$emit('delete', i)
+					}
+				}
+			}
+			var app = new Vue({
+				el: '#todo-app',
+				components: {
+					newTodo: newTodo,
+					todoList: todoList
+				}
+			})
+		</script>
+
+	</body>
+
+</html>
