@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>定制组件的 v-model,2.2.0 新增</title>
+		<link rel="stylesheet" href="../../css/main.css" />
+		<script type="text/javascript" src="../../js/vue.js"></script>
+	</head>
+
+	<body>
+		<div class="box" id="app">
+			<p v-bind:class="{'color-1':true}">2.2.0 新增</p>
+			<p>
+				默认情况下，一个组件的 v-model 会使用 value 属性和 input 事件，但是诸如单选框、复选框之类的输入类型可能把 value 属性用作了别的目的。model 选项可以回避这样的冲突：
+			</p>
+			<p>官网中的栗子一点都不全面，对于我这种新手，实在是不知道全面代码是啥啊</p>
+			<!--<my-checkbox v-model="foo" value="some value"></my-checkbox>-->
+		</div>
+		<script>
+			Vue.component('my-checkbox', {
+				model: {
+					prop: 'checked',
+					event: 'change'
+				},
+				props: {
+					checked: Boolean,
+					// this allows using the `value` prop for a different purpose
+					value: String
+				},
+				// ...
+			})
+			var vm = new Vue({
+				el: '#app'
+				
+			})
+		</script>
+	</body>
+
+</html>
