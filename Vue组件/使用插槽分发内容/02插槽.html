@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>插槽</title>
+		<script type="text/javascript" src="../../js/vue.js"></script>
+		<link rel="stylesheet" href="../../css/main.css" />
+	</head>
+
+	<body>
+		<div class="box">
+			<!--父组件模板-->
+			<div id="parent-template">
+				<child>
+					<!--此处是待分发的内容-->
+					<p slot="one">one，把当前内容传给子组件，由子组件展示</p>
+					<p slot="two">two</p>
+					<p>default</p>
+				</child>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var HelloWorld = Vue.extend({
+				template: '#hello-world'
+			});
+			// 注册子组件
+			Vue.component("child", {
+				template: '<div>' +
+					'<h1>内容被分发且重新组合</h1>' +
+					'<slot>默认分发处</slot>' +
+					'<slot name="two"></slot>' +
+					'<slot name="one"></slot>' +
+					'</div>'
+			});
+
+			// 初始化父组件
+			new Vue({
+				el: "#parent-template"
+			});
+		</script>
+	</body>
+
+</html>
