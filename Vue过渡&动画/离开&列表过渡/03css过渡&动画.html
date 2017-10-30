@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>css过渡</title>
+		<script src="../../js/vue.js"></script>
+		<link rel="stylesheet" href="../../css/main.css" />
+		<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+		<style>
+			/* 可以设置不同的进入和离开动画 */
+			/* 设置持续时间和动画函数 */
+			
+			.slide-fade-enter-active {
+				transition: all .3s ease;
+			}
+			
+			.slide-fade-leave-active {
+				transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+			}
+			
+			.slide-fade-enter,
+			.slide-fade-leave-to
+			/* .slide-fade-leave-active for below version 2.1.8 */
+			
+			{
+				transform: translateX(10px);
+				opacity: 0;
+			}
+			/*animation 动画*/
+			
+			.bounce-enter-active {
+				animation: bounce-in .5s;
+			}
+			
+			.bounce-leave-active {
+				animation: bounce-in .5s reverse;
+			}
+			/*规定需要绑定到选择器的 keyframe 名称。*/
+			
+			@keyframes bounce-in {
+				0% {
+					transform: scale(0);
+				}
+				50% {
+					transform: scale(1.5);
+				}
+				100% {
+					transform: scale(1);
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<p>常用的过渡都是使用css过渡。demo如下：</p>
+			<div id="example-1">
+				<button @click="show = !show">
+					toggle render
+				</button>
+				<transition name="slide-fade">
+					<p v-if="show">hello</p>
+				</transition>
+			</div>
+			<p>
+				CSS 动画用法同 CSS 过渡，区别是在动画中 v-enter 类名在节点插入 DOM 后不会立即删除，而是在 animationend 事件触发时删除。
+			</p>
+			<div id="example-2">
+				<button @click="hide = !hide">
+					toggle render
+				</button>
+				<transition name="bounce">
+					<p v-if="hide">look at me</p>
+				</transition>
+			</div>
+			<p>自定义过渡的类名</p>
+			<p>我们可以通过以下特性来自定义过渡类名：</p>
+			<ol>
+				<li>enter-class</li>
+				<li>enter-active-class</li>
+				<li>enter-to-class(2.1.8+)</li>
+				<li>leave-class</li>
+				<li>leave-active-class</li>
+				<li>leave-to-class(2.1.8+)</li>
+			</ol>
+			<p>
+				他们的优先级高于普通的类名，这对于Vue的过渡系统和其他第三方css动画库，如Animate.css结合使用十分有用。
+			</p>
+			<p>demo：</p>
+			<div id="example-3">
+				<button @click="hidden = !hidden">click me</button>
+				<transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+					<p v-if="hidden">look at me</p>
+				</transition>
+			</div>
+			<script type="text/javascript">
+				var vm = new Vue({
+					el: '#example-1',
+					data: {
+						show: true
+					}
+				});
+				var vm1 = new Vue({
+					el: '#example-2',
+					data: {
+						hide: true
+					}
+				})
+				var vm2 = new Vue({
+					el: '#example-3',
+					data: {
+						hidden: true
+					}
+				})
+			</script>
+		</div>
+	</body>
+
+</html>
