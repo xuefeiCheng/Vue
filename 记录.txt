@@ -167,3 +167,8 @@ input.map(item => item + 1);
 input.map(function (item) {
   return item + 1;
 });
+
+###关于动画特效 想说
+ 新认识了 实现动画效果的另外的技术
+ Velocity.js
+Lodash.js 是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率,提高JS原生方法性能的JS库。并不是所有方法都比原生的快。
