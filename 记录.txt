@@ -172,3 +172,4 @@ input.map(function (item) {
  新认识了 实现动画效果的另外的技术
  Velocity.js
 Lodash.js 是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率,提高JS原生方法性能的JS库。并不是所有方法都比原生的快。
+tween.js是一款可生成平滑动画效果的js动画库。tween.js允许你以平滑的方式修改元素的属性值。它可以通过设置生成各种类似CSS3的动画效果。
