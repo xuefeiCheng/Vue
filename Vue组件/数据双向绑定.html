@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>数据双向绑定</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script src="https://cdn.bootcss.com/vue-resource/1.3.4/vue-resource.common.js"></script>
+	</head>
+
+	<body id='app'>
+		<input type="text" v-model='val' />
+		<button @click="add()"></button>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					val: ''
+				},
+				methods: {
+					add: function() {
+						var url = "/demo/user/update";
+						this.$http.post(url, {
+							'val': this.val
+						}, {
+							emulateJSON: true
+						}).then(function(data) { //ajax请求封装
+							console.log(data.body);
+							
+						}, function(response) { //返回失败方法调用，暂不处理
+							console.info(response);
+						})
+					}
+				}
+			});
+		</script>
+		
+	</body>
+
+</html>
